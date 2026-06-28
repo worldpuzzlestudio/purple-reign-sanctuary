@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0A0614">
+<title>Purple Reign — Your Healing Sanctuary</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --night:#0A0614;--night2:#110920;--night3:#1A0F2E;
+  --pr:#4A2C6E;--pr-mid:#7A3DB8;--pr-light:#9B5ED4;
+  --gold:#C9A84C;--gold-lt:#E8C97A;--gold-dim:rgba(201,168,76,0.15);
+  --ivory:#FAF7F0;--ivory2:#F0EAD8;
+  --text-lt:rgba(237,232,245,0.92);--text-mid:rgba(200,185,220,0.7);--text-muted:rgba(160,144,184,0.55);
+  --success:#2ECC71;--danger:#E74C3C;
+  --radius:18px;--radius-sm:12px;
+}
+html{scroll-behavior:smooth;height:100%}
+body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);min-height:100vh;overflow-x:hidden;padding-bottom:80px}
+
+/* ── SCREENS ── */
+.screen{display:none;min-height:100vh;padding:0 0 100px}
+.screen.active{display:block}
+
+/* ── ONBOARDING ── */
+#screen-onboarding{background:linear-gradient(160deg,#0A0614 0%,#1A0830 60%,#0D0620 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;min-height:100vh}
+.ob-crown{font-size:52px;margin-bottom:20px;animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.ob-title{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,8vw,60px);color:var(--gold-lt);font-weight:300;letter-spacing:4px;line-height:1.1;margin-bottom:8px}
+.ob-sub{font-size:13px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:32px}
+.ob-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,3vw,20px);color:var(--text-mid);font-style:italic;line-height:1.8;margin-bottom:32px;max-width:400px}
+.ob-input{width:100%;max-width:360px;border:1.5px solid rgba(201,168,76,0.3);border-radius:14px;padding:16px 20px;font-family:'Jost',sans-serif;font-size:15px;color:var(--text-lt);background:rgba(255,255,255,0.05);outline:none;margin-bottom:14px;transition:border-color 0.2s}
+.ob-input:focus{border-color:var(--gold)}
+.ob-input::placeholder{color:var(--text-muted)}
+.ob-btn{width:100%;max-width:360px;background:var(--gold);color:var(--night);border:none;border-radius:30px;padding:17px;font-family:'Jost',sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:1.5px;text-transform:uppercase;transition:opacity 0.2s;margin-top:8px}
+.ob-btn:hover{opacity:0.88}
+.ob-step{display:none}.ob-step.active{display:flex;flex-direction:column;align-items:center;width:100%;max-width:440px}
+.journey-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:360px;margin-bottom:20px}
+.journey-opt{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:var(--radius-sm);padding:14px 10px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--text-mid);font-weight:400}
+.journey-opt:hover,.journey-opt.selected{border-color:var(--gold);background:var(--gold-dim);color:var(--gold-lt)}
+.journey-opt .j-icon{font-size:24px;display:block;margin-bottom:6px}
+
+/* ── NAV ── */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(10,6,20,0.97);backdrop-filter:blur(12px);border-top:1px solid rgba(201,168,76,0.12);display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom)}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 4px 8px;cursor:pointer;transition:color 0.2s;color:var(--text-muted);font-size:9px;letter-spacing:0.5px;font-weight:500;text-transform:uppercase;gap:5px}
+.nav-item.active{color:var(--gold)}
+.nav-icon{font-size:20px;line-height:1}
+
+/* ── TOP BAR ── */
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:20px 20px 10px;position:sticky;top:0;background:rgba(10,6,20,0.95);backdrop-filter:blur(10px);z-index:50;border-bottom:1px solid rgba(255,255,255,0.04)}
+.top-bar-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold-lt);font-weight:400;letter-spacing:2px}
+.top-bar-sub{font-size:11px;color:var(--text-muted);font-weight:300}
+
+/* ── HOME ── */
+#screen-home{background:var(--night)}
+.home-hero{padding:28px 20px 20px;background:linear-gradient(180deg,var(--night2) 0%,var(--night) 100%)}
+.home-greeting{font-size:13px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.home-name{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold-lt);font-weight:300;letter-spacing:2px}
+.home-tagline{font-size:13px;color:var(--text-mid);margin-top:4px;font-weight:300}
+.mood-quick{margin:16px 20px;background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius);padding:16px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.mood-quick-left{display:flex;flex-direction:column;gap:3px}
+.mood-quick-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
+.mood-quick-q{font-size:14px;color:var(--text-lt)}
+.mood-emoji-row{display:flex;gap:6px}
+.mood-emoji-btn{font-size:22px;cursor:pointer;transition:transform 0.15s;padding:4px}
+.mood-emoji-btn:hover{transform:scale(1.2)}
+.section-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;padding:0 20px;margin-bottom:10px;margin-top:20px}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px}
+.feat-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius);padding:18px 16px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden}
+.feat-card:hover{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.04)}
+.feat-card-icon{font-size:28px;margin-bottom:10px;display:block}
+.feat-card-name{font-size:13px;font-weight:500;color:var(--text-lt);margin-bottom:4px}
+.feat-card-desc{font-size:11px;color:var(--text-muted);line-height:1.6;font-weight:300}
+.streak-badge{position:absolute;top:12px;right:12px;background:var(--gold);color:var(--night);font-size:10px;font-weight:700;border-radius:20px;padding:2px 8px}
+.home-verse{margin:20px;background:rgba(74,44,110,0.15);border:1px solid rgba(122,61,184,0.25);border-radius:var(--radius);padding:18px}
+.verse-label{font-size:10px;color:var(--pr-light);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+.verse-text{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--text-lt);font-style:italic;line-height:1.7}
+.verse-ref{font-size:11px;color:var(--text-muted);margin-top:8px;font-weight:500}
+
+/* ── MOOD ── */
+#screen-mood{background:var(--night)}
+.mood-section{padding:20px}
+.mood-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold-lt);font-weight:300;margin-bottom:6px}
+.mood-sub{font-size:13px;color:var(--text-muted);margin-bottom:24px}
+.mood-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+.mood-item{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.07);border-radius:var(--radius-sm);padding:14px 8px;text-align:center;cursor:pointer;transition:all 0.2s}
+.mood-item:hover,.mood-item.selected{border-color:var(--gold);background:var(--gold-dim)}
+.mood-item .m-emoji{font-size:26px;display:block;margin-bottom:6px}
+.mood-item .m-label{font-size:10px;color:var(--text-muted)}
+.mood-note-area{width:100%;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:var(--radius-sm);padding:14px 16px;font-family:'Jost',sans-serif;font-size:14px;color:var(--text-lt);resize:none;outline:none;transition:border-color 0.2s;height:100px;margin-bottom:16px}
+.mood-note-area:focus{border-color:rgba(201,168,76,0.4)}
+.mood-note-area::placeholder{color:var(--text-muted)}
+.btn-primary{background:var(--gold);color:var(--night);border:none;border-radius:30px;padding:16px 28px;font-family:'Jost',sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:1.5px;text-transform:uppercase;transition:opacity 0.2s;width:100%}
+.btn-primary:hover{opacity:0.88}
+.btn-outline{background:transparent;color:var(--gold);border:1.5px solid rgba(201,168,76,0.4);border-radius:30px;padding:14px 28px;font-family:'Jost',sans-serif;font-size:13px;font-weight:500;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:all 0.2s;width:100%;margin-top:10px}
+.btn-outline:hover{background:var(--gold-dim)}
+.streak-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.streak-day{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;border:1.5px solid rgba(255,255,255,0.08);color:var(--text-muted)}
+.streak-day.done{background:var(--gold);border-color:var(--gold);color:var(--night)}
+.streak-day.today{border-color:var(--gold);color:var(--gold)}
+.mood-history{margin-top:24px}
+.mood-entry{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.mood-entry-emoji{font-size:24px;flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center}
+.mood-entry-content{flex:1}
+.mood-entry-date{font-size:11px;color:var(--text-muted);margin-bottom:3px}
+.mood-entry-note{font-size:13px;color:var(--text-mid);line-height:1.5}
+
+/* ── KITCHEN ── */
+#screen-kitchen{background:var(--night)}
+.recipe-grid{padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+.recipe-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius);padding:18px;cursor:pointer;transition:all 0.2s}
+.recipe-card:hover{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.03)}
+.recipe-tag{display:inline-block;background:rgba(74,44,110,0.3);color:var(--pr-light);font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;border-radius:20px;padding:3px 10px;margin-bottom:10px}
+.recipe-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold-lt);font-weight:400;margin-bottom:4px}
+.recipe-desc{font-size:12px;color:var(--text-muted);line-height:1.6}
+.recipe-meta{display:flex;gap:16px;margin-top:10px}
+.recipe-meta-item{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:4px}
+.recipe-detail{padding:20px}
+.recipe-detail-name{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold-lt);font-weight:300;margin-bottom:8px}
+.recipe-detail-desc{font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:20px}
+.recipe-section-title{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:12px;margin-top:20px}
+.ingredient-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ingredient-list li{font-size:14px;color:var(--text-mid);display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.ingredient-list li::before{content:"✦";color:var(--gold);font-size:8px;flex-shrink:0}
+.equipment-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.equipment-list li{font-size:14px;color:var(--text-mid);display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.equipment-list li::before{content:"🍳";font-size:11px;flex-shrink:0}
+.step-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.step-item{display:flex;gap:14px;align-items:flex-start}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold);font-weight:600;flex-shrink:0;margin-top:2px}
+.step-text{font-size:14px;color:var(--text-mid);line-height:1.7;flex:1}
+.back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-size:13px;cursor:pointer;margin-bottom:16px;font-weight:500;padding:8px 0}
+
+/* ── JOURNAL ── */
+#screen-journal{background:var(--night)}
+.journal-section{padding:16px 20px}
+.journal-new{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:18px;margin-bottom:20px}
+.journal-new-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:12px}
+.journal-textarea{width:100%;background:transparent;border:none;font-family:'Jost',sans-serif;font-size:14px;color:var(--text-lt);resize:none;outline:none;height:120px;line-height:1.7}
+.journal-textarea::placeholder{color:var(--text-muted)}
+.journal-divider{height:1px;background:rgba(255,255,255,0.06);margin:12px 0}
+.journal-actions{display:flex;justify-content:space-between;align-items:center}
+.journal-prompt{font-size:12px;color:var(--text-muted);font-style:italic}
+.journal-save-btn{background:var(--gold);color:var(--night);border:none;border-radius:20px;padding:9px 20px;font-family:'Jost',sans-serif;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:1px}
+.journal-entries{display:flex;flex-direction:column;gap:12px}
+.journal-entry{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-sm);padding:16px}
+.journal-entry-date{font-size:10px;color:var(--text-muted);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.journal-entry-text{font-size:13px;color:var(--text-mid);line-height:1.7}
+.empty-state{text-align:center;padding:40px 20px}
+.empty-icon{font-size:48px;margin-bottom:12px;opacity:0.5}
+.empty-text{font-size:14px;color:var(--text-muted);line-height:1.6}
+
+/* ── SISTERHOOD ── */
+#screen-sisterhood{background:var(--night)}
+.sisterhood-section{padding:16px 20px}
+.post-composer{background:rgba(74,44,110,0.12);border:1px solid rgba(122,61,184,0.25);border-radius:var(--radius);padding:16px;margin-bottom:20px}
+.composer-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.composer-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--pr),var(--pr-light));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:white;flex-shrink:0}
+.composer-name{font-size:13px;color:var(--text-lt);font-weight:500}
+.composer-textarea{width:100%;background:transparent;border:none;font-family:'Jost',sans-serif;font-size:14px;color:var(--text-lt);resize:none;outline:none;height:80px;line-height:1.6}
+.composer-textarea::placeholder{color:var(--text-muted)}
+.composer-footer{display:flex;justify-content:flex-end;margin-top:10px}
+.post-btn{background:var(--pr-mid);color:white;border:none;border-radius:20px;padding:9px 22px;font-family:'Jost',sans-serif;font-size:12px;font-weight:600;cursor:pointer}
+.post-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-sm);padding:16px;margin-bottom:12px}
+.post-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.post-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:white;flex-shrink:0}
+.post-meta{flex:1}
+.post-name{font-size:13px;color:var(--text-lt);font-weight:500}
+.post-time{font-size:11px;color:var(--text-muted)}
+.post-text{font-size:13px;color:var(--text-mid);line-height:1.7;margin-bottom:12px}
+.post-actions{display:flex;gap:16px}
+.post-action{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted);cursor:pointer;transition:color 0.2s}
+.post-action:hover{color:var(--gold)}
+.post-action.liked{color:var(--gold)}
+
+/* ── PROGRESS ── */
+#screen-progress{background:var(--night)}
+.progress-section{padding:16px 20px}
+.progress-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius);padding:18px;margin-bottom:14px}
+.progress-card-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:14px}
+.milestone-list{display:flex;flex-direction:column;gap:10px}
+.milestone-item{display:flex;gap:12px;align-items:flex-start}
+.milestone-check{width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:all 0.2s}
+.milestone-check.done{background:var(--gold);border-color:var(--gold)}
+.milestone-check.done::after{content:"✓";font-size:12px;color:var(--night);font-weight:700}
+.milestone-text{font-size:13px;color:var(--text-mid);line-height:1.5;padding-top:3px}
+.milestone-text.done{text-decoration:line-through;color:var(--text-muted)}
+.progress-bar-wrap{background:rgba(255,255,255,0.06);border-radius:20px;height:8px;overflow:hidden;margin-top:16px}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--pr-light));border-radius:20px;transition:width 0.5s ease}
+.progress-pct{font-size:12px;color:var(--gold);text-align:right;margin-top:6px}
+.affirmation-box{background:linear-gradient(135deg,rgba(74,44,110,0.2),rgba(122,61,184,0.1));border:1px solid rgba(122,61,184,0.3);border-radius:var(--radius);padding:20px;margin-bottom:14px;text-align:center}
+.affirmation-text{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--text-lt);font-style:italic;line-height:1.7;margin-bottom:12px}
+.affirmation-btn{background:transparent;color:var(--pr-light);border:1px solid rgba(122,61,184,0.4);border-radius:20px;padding:8px 20px;font-family:'Jost',sans-serif;font-size:12px;cursor:pointer;transition:all 0.2s}
+.affirmation-btn:hover{background:rgba(122,61,184,0.15)}
+
+/* ── TALK SUPPORT ── */
+#screen-talk{background:var(--night)}
+.talk-section{padding:16px 20px}
+.dr-profile-card{background:linear-gradient(135deg,rgba(74,44,110,0.2),rgba(17,9,32,0.8));border:1px solid rgba(122,61,184,0.3);border-radius:var(--radius);padding:22px;margin-bottom:16px}
+.dr-profile-top{display:flex;gap:16px;align-items:flex-start;margin-bottom:16px}
+.dr-photo{width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,168,76,0.4);flex-shrink:0}
+.dr-info{flex:1}
+.dr-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold-lt);font-weight:400;margin-bottom:3px}
+.dr-title{font-size:11px;color:var(--pr-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.dr-org{font-size:12px;color:var(--text-muted)}
+.dr-bio{font-size:13px;color:var(--text-mid);line-height:1.7;margin-bottom:16px}
+.availability-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.3);border-radius:20px;padding:5px 12px;font-size:11px;color:#2ECC71;margin-bottom:16px}
+.avail-dot{width:6px;height:6px;border-radius:50%;background:#2ECC71;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.service-tag{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:8px 10px;font-size:11px;color:var(--text-mid);text-align:center;line-height:1.4}
+.pricing-section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-sm);padding:16px;margin-bottom:16px}
+.pricing-title{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:12px}
+.price-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-mid)}
+.price-row:last-child{border-bottom:none}
+.price-amount{color:var(--gold-lt);font-weight:500}
+.book-btn{display:block;background:linear-gradient(135deg,var(--pr-mid),var(--pr-light));color:white;border:none;border-radius:30px;padding:17px;font-family:'Jost',sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:1px;text-align:center;text-decoration:none;width:100%;transition:opacity 0.2s;margin-bottom:10px}
+.book-btn:hover{opacity:0.9}
+.payment-note{font-size:11px;color:var(--text-muted);text-align:center;line-height:1.5}
+.crisis-card{background:rgba(231,76,60,0.08);border:1px solid rgba(231,76,60,0.25);border-radius:var(--radius-sm);padding:16px;margin-top:16px}
+.crisis-title{font-size:12px;color:#E74C3C;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.crisis-text{font-size:13px;color:var(--text-mid);line-height:1.6}
+.crisis-link{color:#E74C3C;text-decoration:none;font-weight:500}
+
+/* ── SUBSCRIPTION ── */
+#screen-subscription{background:var(--night)}
+.sub-section{padding:16px 20px}
+.sub-hero{text-align:center;padding:20px 0 28px}
+.sub-crown{font-size:44px;margin-bottom:12px}
+.sub-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold-lt);font-weight:300;margin-bottom:6px;letter-spacing:2px}
+.sub-sub{font-size:13px;color:var(--text-muted);line-height:1.6;max-width:320px;margin:0 auto}
+.plan-card{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:22px;margin-bottom:12px;cursor:pointer;transition:all 0.2s;position:relative}
+.plan-card:hover,.plan-card.selected{border-color:var(--gold);background:var(--gold-dim)}
+.plan-card.popular::before{content:"BEST VALUE";position:absolute;top:-1px;right:16px;background:var(--gold);color:var(--night);font-size:9px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:0 0 8px 8px}
+.plan-name{font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+.plan-price{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold-lt);font-weight:300;line-height:1}
+.plan-period{font-size:13px;color:var(--text-muted);margin-left:4px}
+.plan-savings{font-size:11px;color:var(--success);margin-top:4px}
+.plan-features{margin-top:14px;display:flex;flex-direction:column;gap:7px}
+.plan-feat{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-mid)}
+.plan-feat::before{content:"✦";color:var(--gold);font-size:8px;flex-shrink:0}
+.sub-guarantee{text-align:center;padding:16px;font-size:12px;color:var(--text-muted);line-height:1.6}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(30,20,50,0.95);color:var(--text-lt);padding:12px 24px;border-radius:30px;font-size:13px;opacity:0;transition:all 0.3s;z-index:200;border:1px solid rgba(201,168,76,0.2);white-space:nowrap;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── SUCCESS SCREEN ── */
+.success-overlay{position:fixed;inset:0;background:rgba(10,6,20,0.95);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:300;text-align:center;padding:40px}
+.success-overlay.show{display:flex}
+.success-icon{font-size:64px;margin-bottom:16px;animation:float 2s ease-in-out infinite}
+.success-title{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold-lt);margin-bottom:10px}
+.success-sub{font-size:14px;color:var(--text-muted);line-height:1.7;max-width:320px;margin-bottom:28px}
+
+/* ── UTILITIES ── */
+.divider{height:1px;background:rgba(255,255,255,0.05);margin:16px 0}
+.pill{display:inline-block;background:rgba(201,168,76,0.1);color:var(--gold);border-radius:20px;padding:4px 12px;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+
+@media(max-width:380px){
+  .feature-grid{grid-template-columns:1fr 1fr}
+  .mood-grid{grid-template-columns:repeat(4,1fr)}
+  .journey-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- ONBOARDING                                      -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="screen-onboarding" class="screen active">
+  <div id="ob-step-1" class="ob-step active">
+    <div class="ob-crown">👑</div>
+    <div class="ob-title">Purple Reign</div>
+    <div class="ob-sub">Your Healing Sanctuary</div>
+    <div class="ob-quote">"She is clothed with strength and dignity, and she laughs without fear of the future."<br><span style="font-size:12px;opacity:0.6">— Proverbs 31:25</span></div>
+    <input class="ob-input" id="ob-name" type="text" placeholder="What's your first name, Queen?" autocomplete="given-name">
+    <button class="ob-btn" onclick="obStep1()">Begin My Healing Journey →</button>
+  </div>
+  <div id="ob-step-2" class="ob-step">
+    <div class="ob-crown">🌸</div>
+    <div class="ob-title" style="font-size:28px;margin-bottom:8px">Where are you in<br>your journey?</div>
+    <div class="ob-sub" style="margin-bottom:24px">This helps us personalise your sanctuary</div>
+    <div class="journey-grid" id="journey-grid">
+      <div class="journey-opt" onclick="selectJourney(this,'newly-diagnosed')"><span class="j-icon">🌱</span>Newly Diagnosed</div>
+      <div class="journey-opt" onclick="selectJourney(this,'in-treatment')"><span class="j-icon">💊</span>In Treatment</div>
+      <div class="journey-opt" onclick="selectJourney(this,'recovery')"><span class="j-icon">🦋</span>In Recovery</div>
+      <div class="journey-opt" onclick="selectJourney(this,'overcomer')"><span class="j-icon">👑</span>Overcomer</div>
+      <div class="journey-opt" onclick="selectJourney(this,'caregiver')"><span class="j-icon">💜</span>Caregiver</div>
+      <div class="journey-opt" onclick="selectJourney(this,'supporter')"><span class="j-icon">🙏</span>Supporting Someone</div>
+    </div>
+    <button class="ob-btn" onclick="obStep2()">Enter My Sanctuary →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- HOME                                            -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="screen-home" class="screen">
+  <div class="home-hero">
+    <div class="home-greeting" id="home-greeting">Good morning</div>
+    <div class="home-name" id="home-name">Welcome, Queen 👑</div>
+    <div class="home-tagline">You are not alone in this journey</div>
+  </div>
+  <div class="mood-quick" onclick="showScreen('mood')">
+    <div class="mood-quick-left">
+      <div class="mood-quick-label">Daily Check-in</div>
+      <div class="mood-quick-q">How are you feeling today?</div>
+    </div>
+    <div class="mood-emoji-row">
+      <span class="mood-emoji-btn" onclick="quickMood(event,'😊')">😊</span>
+      <span class="mood-emoji-btn" onclick="quickMood(event,'💜')">💜</span>
+      <span class="mood-emoji-btn" onclick="quickMood(event,'😔')">😔</span>
+    </div>
+  </div>
+  <div class="home-verse">
+    <div class="verse-label">✦ Today's Word</div>
+    <div class="verse-text" id="daily-verse">"I can do all things through Christ who strengthens me."</div>
+    <div class="verse-ref" id="daily-ref">— Philippians 4:13</div>
+  </div>
+  <div class="section-label">Your Sanctuary</div>
+  <div class="feature-grid">
+    <div class="feat-card" onclick="showScreen('mood')">
+      <span class="feat-card-icon">🌙</span>
+      <div class="feat-card-name">Mood Check-in</div>
+      <div class="feat-card-desc">Track your emotional journey daily</div>
+      <div class="streak-badge" id="streak-badge">🔥 0</div>
+    </div>
+    <div class="feat-card" onclick="showScreen('kitchen')">
+      <span class="feat-card-icon">🥗</span>
+      <div class="feat-card-name">Recovery Kitchen</div>
+      <div class="feat-card-desc">Nourishing recipes for healing</div>
+    </div>
+    <div class="feat-card" onclick="showScreen('journal')">
+      <span class="feat-card-icon">📖</span>
+      <div class="feat-card-name">Healing Journal</div>
+      <div class="feat-card-desc">Your private space to reflect</div>
+    </div>
+    <div class="feat-card" onclick="showScreen('sisterhood')">
+      <span class="feat-card-icon">💜</span>
+      <div class="feat-card-name">Sisterhood</div>
+      <div class="feat-card-desc">Community of women who understand</div>
+    </div>
+    <div class="feat-card" onclick="showScreen('progress')">
+      <span class="feat-card-icon">⭐</span>
+      <div class="feat-card-name">Progress Path</div>
+      <div class="feat-card-desc">Celebrate your milestones</div>
+    </div>
+    <div class="feat-card" onclick="showScreen('talk')">
+      <span class="feat-card-icon">🕊️</span>
+      <div class="feat-card-name">Talk Support</div>
+      <div class="feat-card-desc">Faith-based counseling & coaching</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- MOOD CHECK-IN                                  -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="screen-mood" class="screen">
+  <div class="top-bar">
+    <div><div class="top-bar-title">Mood Check-in</div><div class="top-bar-sub">How are you really feeling?</div></div>
+    <div class="pill" id="mood-streak-pill">🔥 0 days</div>
+  </div>
+  <div class="mood-section">
+    <div class="section-label" style="padding:0;margin-bottom:12px">Your Week</div>
+    <div class="streak-row" id="streak-row"></div>
+    <div class="section-label" style="padding:0;margin-bottom:12px;margin-top:0">Today's Mood</div>
+    <div class="mood-grid">
+      <div class="mood-item" onclick="selectMood(this,'😊','Joyful')"><span class="m-emoji">😊</span><span class="m-label">Joyful</span></div>
+      <div class="mood-item" onclick="selectMood(this,'💪','Strong')"><span class="m-emoji">💪</span><span class="m-label">Strong</span></div>
+      <div class="mood-item" onclick="selectMood(this,'😔','Sad')"><span class="m-emoji">😔</span><span class="m-label">Sad</span></div>
+      <div class="mood-item" onclick="selectMood(this,'😰','Anxious')"><span class="m-emoji">😰</span><span class="m-label">Anxious</span></div>
+      <div class="mood-item" onclick="selectMood(this,'🙏','Hopeful')"><span class="m-emoji">🙏</span><span class="m-label">Hopeful</span></div>
+      <div class="mood-item" onclick="selectMood(this,'😴','Tired')"><span class="m-emoji">😴</span><span class="m-label">Tired</span></div>
+      <div class="mood-item" onclick="selectMood(this,'🌸','Peaceful')"><span class="m-emoji">🌸</span><span class="m-label">Peaceful</span></div>
+      <div class="mood-item" onclick="selectMood(this,'😤','Frustrated')"><span class="m-emoji">😤</span><span class="m-label">Frustrated</span></div>
+    </div>
+    <textarea class="mood-note-area" id="mood-note" placeholder="Would you like to share a little more about how you're feeling? (optional)"></textarea>
+    <button class="btn-primary" onclick="saveMood()">Save Today's Check-in</button>
+    <div class="mood-history" id="mood-history"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- RECOVERY KITCHEN                               -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="screen-kitchen" class="screen">
+  <div class="top-bar">
+    <div><div class="top-bar-title">Recovery Kitchen</div><div class="top-bar-sub">Nourish your healing body</div></div>
+  </div>
+  <div id="kitchen-list">
+    <div class="recipe-grid">
+      <div class="recipe-card" onclick="openRecipe(0)">
+        <div class="recipe-tag">Anti-Inflammatory</div>
+        <div class="recipe-name">Golden Turmeric Healing Soup</div>
+        <div class="recipe-desc">A warm, nourishing broth with powerful anti-inflammatory spices to support your body during treatment</div>
+        <div class="recipe-meta">
+          <span class="recipe-meta-item">⏱ 30 mins</span>
+          <span class="recipe-meta-item">🍽 4 servings</span>
+          <span class="recipe-meta-item">💚 Vegan</span>
+        </div>
+      </div>
+      <div class="recipe-card" onclick="openRecipe(1)">
+        <div class="recipe-tag">Immune Boost</div>
+        <div class="recipe-name">Purple Reign Berry Smoothie Bowl</div>
+        <div class="recipe-desc">Antioxidant-rich purple berries packed with nutrients to strengthen your immune system</div>
+        <div class="recipe-meta">
+          <span class="recipe-meta-item">⏱ 10 mins</span>
+          <span class="recipe-meta-item">🍽 1 serving</span>
+          <span class="recipe-meta-item">🌱 Raw</span>
+        </div>
+      </div>
+      <div class="recipe-card" onclick="openRecipe(2)">
+        <div class="recipe-tag">Energy</div>
+        <div class="recipe-name">Opal's Ginger Lemon Wellness Tea</div>
+        <div class="recipe-desc">A comforting, soothing tea to ease nausea, boost energy, and warm your spirit on difficult days</div>
+        <div class="recipe-meta">
+          <span class="recipe-meta-item">⏱ 10 mins</span>
+          <span class="recipe-meta-item">🍽 2 cups</span>
+          <span class="recipe-meta-item">💛 Soothing</span>
+        </div>
+      </div>
+      <div class="recipe-card" onclick="openRecipe(3)">
+        <div class="recipe-tag">Protein Rich</div>
+        <div class="recipe-name">Healing Lentil & Greens Bowl</div>
+        <div class="recipe-desc">Plant-based protein with iron-rich greens to help rebuild strength and support recovery</div>
+        <div class="recipe-meta">
+          <span class="recipe-meta-item">⏱ 40 mins</span>
+          <span class="recipe-meta-item">🍽 3 servings</span>
+          <span class="recipe-meta-item">💪 High Protein</span>
+        </div>
+      </div>
+      <div class="recipe-card" onclick="openRecipe(4)">
+        <div class="recipe-tag">Gut Health</div>
+        <div class="recipe-name">Probiotic Overnight Oats</div>
+        <div class="recipe-desc">Gut-nourishing overnight oats with yogurt and seeds to support digestion and balance during treatment</div>
+        <div class="recipe-meta">
+          <span class="recipe-meta-item">⏱ 5 mins</span>
+          <span class="recipe-meta-item">🍽 1 serving</span>
+          <span class="recipe-meta-item">🌙 Overnight</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="kitchen-detail" style="display:none"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- HEALING JOURNAL                                -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="screen-journal" class="screen">
+  <div class="top-bar">
+    <div><div class="top-bar-title">Healing Journal</div><div class="top-bar-sub">Your private sanctuary of words</div></div>
+  </div>
+  <div class="journal-section">
+    <div class="journal-new">
+      <div class="journal-new-title">✦ New Entry</div>
+      <textarea class="journal-textarea" id="journal-text" placeholder="What's on your heart today, Queen? This is your safe space..."></textarea>
+      <div class="journal-divider"></div>
+      <div class="journal-actions">
+        <div class="journal-prompt" id="journal-prompt">Loading prompt...</div>
+        <button class="journal-save-btn" onclick="saveJournalEntry()">Save Entry</button>
+      </div>
+    </div>
+    <div class="section-label" style="padding:0;margin-bottom:12px">Previous Entries</div>
+    <div class="journal-entries" id="journal-entries">
+      <div class="empty-state">
+        <div class="empty-icon">📖</div>
+        <div class="empty-text">Your healing story begins here.<br>Write your first entry above.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SISTERHOOD                                     -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="screen-sisterhood" class="screen">
+  <div class="top-bar">
+    <div><div class="top-bar-title">Sisterhood</div><div class="top-bar-sub">You are never alone</div></div>
+  </div>
+  <div class="sisterhood-section">
+    <div class="post-composer">
+      <div class="composer-header">
+        <div class="composer-avatar" id="composer-avatar">O</div>
+        <div class="composer-name" id="composer-name">Share with your sisters...</div>
+      </div>
+      <textarea class="composer-textarea" id="post-text" placeholder="Share a word of encouragement, an update, or just how you're feeling..."></textarea>
+      <div class="composer-footer">
+        <button class="post-btn" onclick="postToSisterhood()">Share 💜</button>
+      </div>
+    </div>
+    <div id="sisterhood-feed"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- PROGRESS PATH                                  -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="screen-progress" class="screen">
+  <div class="top-bar">
+    <div><div class="top-bar-title">Progress Path</div><div class="top-bar-sub">Celebrate every step forward</div></div>
+  </div>
+  <div class="progress-section">
+    <div class="affirmation-box">
+      <div class="affirmation-text" id="affirmation-text">"You are braver than you believe, stronger than you seem, and more loved than you know."</div>
+      <button class="affirmation-btn" onclick="newAffirmation()">New Affirmation ✨</button>
+    </div>
+    <div class="progress-card">
+      <div class="progress-card-title">✦ My Healing Milestones</div>
+      <div class="milestone-list" id="milestone-list"></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="milestone-bar" style="width:0%"></div></div>
+      <div class="progress-pct" id="milestone-pct">0% complete</div>
+    </div>
+    <div class="progress-card">
+      <div class="progress-card-title">✦ My Wins This Week</div>
+      <textarea class="mood-note-area" id="wins-text" placeholder="What are you proud of this week? Big or small, every win counts..." style="height:80px"></textarea>
+      <button class="btn-primary" style="margin-top:10px" onclick="saveWins()">Save My Wins 🌟</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- TALK SUPPORT                                   -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="screen-talk" class="screen">
+  <div class="top-bar">
+    <div><div class="top-bar-title">Talk Support</div><div class="top-bar-sub">Professional faith-based care</div></div>
+  </div>
+  <div class="talk-section">
+    <div class="dr-profile-card">
+      <div class="dr-profile-top">
+        <img class="dr-photo" src="data:image/jpeg;base64,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" alt="Dr. Jacinth Strachan-Carr">
+        <div class="dr-info">
+          <div class="dr-name">Dr. Jacinth Strachan-Carr</div>
+          <div class="dr-title">Ph.D., Ph.D. · Faith-Based Counselor</div>
+          <div class="dr-org">Hope Alive Ministries Network</div>
+        </div>
+      </div>
+      <div class="availability-tag"><span class="avail-dot"></span>Available Wed–Sat, 12PM–6PM MST</div>
+      <div class="dr-bio">Dr. Jacinth Strachan-Carr, Ph.D., Ph.D is a faith-based counselor, life coach, and emotional support specialist dedicated to helping individuals and families find hope and healing through life's most challenging seasons. As the founder of Hope Alive Ministries Network, she offers compassionate, Faith-centered care rooted in integrity, wisdom, and grace. Whether you are navigating a cancer diagnosis, managing a chronic illness, walking through grief, or carrying the weight of emotional exhaustion, Dr. Carr provides a safe and nurturing space where you can be heard, supported, and empowered to heal and move forward with renewed faith and hope.</div>
+      <div class="section-label" style="padding:0;margin-top:0;margin-bottom:10px">Services Offered</div>
+      <div class="services-grid">
+        <div class="service-tag">Faith-Based Counseling</div>
+        <div class="service-tag">Life Coaching</div>
+        <div class="service-tag">Cancer Support Care</div>
+        <div class="service-tag">Grief & Recovery</div>
+        <div class="service-tag">Family/Caregiver Support</div>
+        <div class="service-tag">Spiritual Wellness</div>
+        <div class="service-tag">Prayer & Encouragement</div>
+        <div class="service-tag">Dream Interpretation</div>
+      </div>
+    </div>
+    <div class="pricing-section">
+      <div class="pricing-title">Session Pricing</div>
+      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>🚨 Emergency Session (45 min)</span><span class="price-amount">$120 → Book</span></div>
+      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>Individual (30 min)</span><span class="price-amount">$85 → Book</span></div>
+      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>Individual (45 min)</span><span class="price-amount">$110 → Book</span></div>
+      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>Individual (60 min)</span><span class="price-amount">$170 → Book</span></div>
+      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>Individual (90 min)</span><span class="price-amount">$200 → Book</span></div>
+      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>Family/Caregiver (60 min)</span><span class="price-amount">$180 → Book</span></div>
+      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>4-Session Package</span><span class="price-amount">$560 → Book</span></div>
+    </div>
+    <a class="book-btn" href="https://calendly.com/jaccy-carr00/hope-alive-counseling-session" target="_blank">Book a Session with Dr. Carr 🕊️</a>
+    <div class="payment-note">Sessions available via Zoom & WhatsApp Video<br>Payment accepted via e-Transfer & PayPal</div>
+    <div class="crisis-card">
+      <div class="crisis-title">🆘 In Crisis?</div>
+      <div class="crisis-text">If you are in immediate distress, please call <a class="crisis-link" href="tel:988">988</a> (Canada/US Suicide & Crisis Lifeline) or text HOME to <a class="crisis-link" href="sms:741741">741741</a> for the Crisis Text Line. You are not alone. 💜</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- BOTTOM NAV                                     -->
+<!-- ══════════════════════════════════════════════ -->
+<nav class="bottom-nav" id="bottom-nav" style="display:none">
+  <div class="nav-item active" onclick="showScreen('home')" id="nav-home">
+    <div class="nav-icon">🏠</div><span>Home</span>
+  </div>
+  <div class="nav-item" onclick="showScreen('mood')" id="nav-mood">
+    <div class="nav-icon">🌙</div><span>Mood</span>
+  </div>
+  <div class="nav-item" onclick="showScreen('kitchen')" id="nav-kitchen">
+    <div class="nav-icon">🥗</div><span>Kitchen</span>
+  </div>
+  <div class="nav-item" onclick="showScreen('journal')" id="nav-journal">
+    <div class="nav-icon">📖</div><span>Journal</span>
+  </div>
+  <div class="nav-item" onclick="showScreen('talk')" id="nav-talk">
+    <div class="nav-icon">🕊️</div><span>Support</span>
+  </div>
+  <div class="nav-item" onclick="showScreen('about')" id="nav-about">
+    <div class="nav-icon">👑</div><span>About</span>
+  </div>
+</nav>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── DATA ──────────────────────────────────────────
+const VERSES = [
+  {text:"\"I can do all things through Christ who strengthens me.\"",ref:"— Philippians 4:13"},
+  {text:"\"She is clothed with strength and dignity, and she laughs without fear of the future.\"",ref:"— Proverbs 31:25"},
+  {text:"\"The Lord is my shepherd; I shall not want. He makes me lie down in green pastures.\"",ref:"— Psalm 23:1-2"},
+  {text:"\"For I know the plans I have for you, plans to prosper you and not to harm you.\"",ref:"— Jeremiah 29:11"},
+  {text:"\"Come to me, all you who are weary and burdened, and I will give you rest.\"",ref:"— Matthew 11:28"},
+  {text:"\"The Lord your God is with you, the Mighty Warrior who saves.\"",ref:"— Zephaniah 3:17"},
+  {text:"\"He gives strength to the weary and increases the power of the weak.\"",ref:"— Isaiah 40:29"}
+];
+const AFFIRMATIONS = [
+  "You are braver than you believe, stronger than you seem, and more loved than you know.",
+  "Your healing is happening, even when you cannot see it. Trust the process.",
+  "You are a warrior Queen. This diagnosis does not define you — your faith does.",
+  "Every day you keep going is a victory. You are stronger than this battle.",
+  "Your scars are not signs of weakness — they are proof of what you survived.",
+  "God's grace is sufficient for you, for His power is made perfect in weakness.",
+  "You are seen. You are loved. You are not fighting this alone.",
+  "Your story is not over. The best chapters are still being written."
+];
+const PROMPTS = [
+  "What are you grateful for today, even in the small things?",
+  "What would you tell your past self when you first received your diagnosis?",
+  "Describe one moment today where you felt peace or strength.",
+  "What does healing mean to you right now?",
+  "Write a letter to your body — what do you want it to know?",
+  "What Scripture or quote is carrying you through this season?",
+  "Who has shown up for you during this journey? How did it feel?",
+  "What is one thing you are looking forward to, no matter how small?"
+];
+const SISTERHOOD_SEED = [
+  {name:"Mama Grace",initial:"G",color:"#9B5ED4",text:"Day 45 post-chemo and I went for a 20-minute walk today. Six months ago I couldn't get off the couch. Queens, it gets better. Keep going. 💜",time:"2h ago",likes:24},
+  {name:"Opal M.",initial:"O",color:"#C9A84C",text:"Built something just for us today. Every feature in this app was built with YOUR healing in mind. You are not alone on this journey. — Opal 👑",time:"1d ago",likes:47},
+  {name:"Hope Warrior",initial:"H",color:"#7A3DB8",text:"Praying for every woman reading this tonight. May God's peace that surpasses all understanding guard your heart and mind. You are loved. 🙏",time:"3d ago",likes:31}
+];
+const RECIPES = [
+  {
+    name:"Golden Turmeric Healing Soup",tag:"Anti-Inflammatory",time:"30 mins",servings:4,
+    desc:"A warm, nourishing broth with powerful anti-inflammatory spices to support your body during and after treatment. Gentle on the stomach and deeply comforting.",
+    ingredients:["2 tbsp coconut oil or olive oil","1 large onion, diced","4 garlic cloves, minced","2 tsp fresh ginger, grated","2 tsp turmeric powder","1 tsp cumin","½ tsp black pepper (activates turmeric)","4 cups vegetable broth","2 cups sweet potato, cubed","1 can coconut milk (400ml)","1 cup red lentils","Salt to taste","Fresh cilantro to garnish","Squeeze of lemon juice"],
+    equipment:["Large stainless steel pot","Cutting board & knife","Wooden spoon or spatula"],
+    steps:["Heat oil in a large pot over medium heat. Add onion and sauté until soft, about 5 minutes.","Add garlic and ginger, cook for 2 minutes until fragrant.","Add turmeric, cumin, and black pepper. Stir constantly for 1 minute to bloom the spices.","Add sweet potato, red lentils, and vegetable broth. Bring to a boil.","Reduce heat, cover and simmer for 15 minutes until lentils and sweet potato are tender.","Stir in coconut milk and simmer for 5 more minutes. Season with salt.","Add a squeeze of lemon juice, ladle into bowls, and garnish with fresh cilantro."]
+  },
+  {
+    name:"Purple Reign Berry Smoothie Bowl",tag:"Immune Boost",time:"10 mins",servings:1,
+    desc:"Antioxidant-rich purple berries packed with cancer-fighting nutrients. The deep purple color comes from anthocyanins — powerful compounds that support your immune system and reduce inflammation.",
+    ingredients:["1 cup frozen blueberries","½ cup frozen blackberries","1 frozen banana","¼ cup pomegranate juice","2 tbsp Greek yogurt or coconut yogurt","1 tbsp honey or maple syrup","Toppings: fresh berries, granola, chia seeds, sliced banana, coconut flakes"],
+    equipment:["High-speed blender","Serving bowl"],
+    steps:["Place frozen blueberries, blackberries, banana, pomegranate juice, and yogurt into a high-speed blender.","Blend until completely smooth and thick. Add a splash more juice if needed — it should be thicker than a smoothie.","Pour into a bowl and smooth the top.","Arrange your toppings beautifully — this meal is for you, Queen. Make it pretty.","Eat immediately while cold and enjoy every nourishing bite."]
+  },
+  {
+    name:"Opal's Ginger Lemon Wellness Tea",tag:"Soothing",time:"10 mins",servings:2,
+    desc:"This is the tea that got me through my hardest treatment days. Ginger calms nausea, lemon supports detoxification, and honey soothes your throat. Made with love.",
+    ingredients:["3 cups filtered water","2-inch piece of fresh ginger, sliced thin","1 lemon, sliced","2 tbsp raw honey","½ tsp turmeric (optional)","A pinch of cayenne (optional)","Fresh mint leaves"],
+    equipment:["Small stainless steel saucepan","Strainer","Mugs"],
+    steps:["Bring water to a boil in a small saucepan.","Add ginger slices and reduce to a simmer. Simmer for 8 minutes.","Remove from heat. Add lemon slices and let steep for 3 minutes.","Strain into mugs. Stir in honey while still warm.","Add a pinch of turmeric and cayenne if using.","Garnish with fresh mint. Sip slowly and breathe deeply. You are healing, Queen. ✨"]
+  },
+  {
+    name:"Healing Lentil & Greens Bowl",tag:"Protein Rich",time:"40 mins",servings:3,
+    desc:"Plant-based iron and protein to help rebuild your strength. Spinach and kale support healthy blood counts — especially important during and after treatment.",
+    ingredients:["1½ cups green or brown lentils, rinsed","3 cups vegetable broth","2 tbsp olive oil","1 onion, finely diced","3 garlic cloves, minced","1 tsp smoked paprika","1 tsp cumin","2 cups baby spinach","1 cup kale, chopped","1 can diced tomatoes","Salt & black pepper","Lemon juice to serve","Tahini drizzle (optional)"],
+    equipment:["Medium stainless steel pot (for lentils)","Large stainless steel pan or skillet","Cutting board & knife"],
+    steps:["Cook lentils in vegetable broth according to package directions. Drain and set aside.","In a large pan, heat olive oil over medium heat. Sauté onion until golden, about 6 minutes.","Add garlic, paprika, and cumin. Cook for 1 minute, stirring constantly.","Add diced tomatoes and cook down for 5 minutes until sauce thickens.","Stir in cooked lentils. Season with salt and pepper.","Add spinach and kale, toss until wilted — about 2 minutes.","Serve warm, drizzled with lemon juice and tahini. Your body will thank you. 💪"]
+  },
+  {
+    name:"Probiotic Overnight Oats",tag:"Gut Health",time:"5 mins + overnight",servings:1,
+    desc:"Your gut health affects your entire healing journey. These oats are easy to digest, gut-nourishing, and ready when you wake up — even on your hardest mornings.",
+    ingredients:["½ cup rolled oats","¾ cup unsweetened almond milk (or milk of choice)","¼ cup Greek yogurt (probiotic-rich)","1 tbsp chia seeds","1 tbsp honey or maple syrup","½ tsp vanilla extract","Toppings: sliced banana, berries, a drizzle of almond butter, pumpkin seeds"],
+    equipment:["Jar or container with lid"],
+    steps:["Add oats, almond milk, yogurt, chia seeds, honey, and vanilla to a jar or container with a lid.","Stir everything together well so the chia seeds are distributed evenly.","Cover and place in the refrigerator overnight, or for at least 4 hours.","In the morning, stir the oats. They should be thick and creamy — add a splash of milk if needed.","Top with your favourite toppings and enjoy. This is your gentle, nourishing morning. 🌸"]
+  },
+  {
+    name:"Opal's Healing Millet Porridge",tag:"Comfort & Strength",time:"20 mins",servings:2,
+    desc:"A warm, nourishing bowl that soothes and strengthens — straight from my own healing journey.",
+    ingredients:["1 cup millet (whole or millet flour)","2 cups homemade coconut milk (from fresh or frozen coconut)","Pinch of sea salt","1 teaspoon pure vanilla extract","1 Ceylon cinnamon stick","Maple syrup to taste","Organic creamed honey to taste","Handful of organic raisins","Handful of organic cashews","Pumpkin seeds","Sunflower seeds"],
+    equipment:["Medium stainless steel saucepan","Blender (for homemade coconut milk)","Wooden spoon"],
+    steps:["If using whole millet, soak overnight in water, then drain. If using millet flour, mix with a little cold water first to form a smooth paste — this prevents lumps and sticking.","Warm your homemade coconut milk in a pot over medium heat. Add your salt, vanilla, and cinnamon stick and let the flavours bloom for a minute.","Stir in your soaked millet or millet flour paste. Reduce heat to low and cook gently, stirring regularly, until thick and creamy.","Sweeten with maple syrup and creamed honey to your taste.","Top with raisins, cashews, pumpkin seeds and sunflower seeds.","Opal's tip: Making your own coconut milk from fresh or frozen coconut makes all the difference — your body deserves the real thing!"]
+  },
+  {
+    name:"Opal's Salty Caramel Cashew Balls",tag:"No-Bake Treat",time:"15 mins",servings:10,
+    desc:"No baking, no fuss — just wholesome ingredients that taste like a treat and fuel your healing. A base recipe from another with my own healing ginger twist.",
+    ingredients:["1 cup packed pitted dates (Medjool preferred, any dates work)","⅓ cup raw organic cashews","¼ cup desiccated or shredded unsweetened coconut","¼ tsp Himalayan or Celtic salt","Fresh grated ginger to taste"],
+    equipment:["Food processor","Storage container (glass or plastic with lid)"],
+    steps:["Add all ingredients to a food processor.","Pulse until the mixture blends into a dough and starts to clump together.","Remove and roll into balls — the size is up to you! Makes approximately 10 balls or fewer depending on size.","Store in a covered glass or plastic container. Keeps up to 1 week in the refrigerator or up to 1 month in the freezer.","Opal's tip: I added fresh grated ginger to this recipe — ginger is a powerful anti-inflammatory and digestive aid, especially helpful during treatment."]
+  },
+  {
+    name:"Pineapple-Stuffed Sweet Potatoes",tag:"Jamaican Twist",time:"75 mins",servings:2,
+    desc:"Sweet potatoes are one of nature's most healing foods — rich in antioxidants and gentle on a healing body. My Jamaican twist on a classic.",
+    ingredients:["2 sweet potatoes, washed (Jamaican sweet potatoes work beautifully here — creamier and sweeter)","2 tablespoons coconut or almond milk","1½ tablespoons honey","¼ teaspoon ground coriander seed powder","¼ teaspoon sea salt","¼ cup pineapple, cut in cubes","1 tablespoon chopped walnuts"],
+    equipment:["Oven","Baking sheet","Parchment paper","Mixing bowl"],
+    steps:["Preheat oven to 400°F. Line a baking sheet with parchment paper.","Bake potatoes 50–55 minutes until very soft.","Cool slightly, slice in half lengthwise and scoop out the center, leaving a thin shell.","Mash with nut milk until smooth, then stir in honey, coriander, salt and pineapple.","Spoon back into shells, sprinkle with walnuts and bake another 15–20 minutes.","Opal's tip: If you can find Jamaican sweet potatoes, use them — they're creamier, sweeter and absolutely divine!"]
+  },
+  {
+    name:"Coconut Chia Breakfast Pudding",tag:"Caribbean Twist",time:"10 mins + chilling",servings:2,
+    desc:"Creamy, dreamy and packed with healing goodness — this one feels like a treat but works like medicine.",
+    ingredients:["1 cup homemade coconut milk","4 tablespoons chia seeds","2 tablespoons grated coconut","1 teaspoon pure non-alcoholic vanilla extract","1 tablespoon raw honey or maple syrup (optional)","Fresh ripe mango, diced","Handful of mixed nuts (cashews, walnuts, pistachios)"],
+    equipment:["Mixing bowl","Container with lid (for chilling)"],
+    steps:["Mix coconut milk, vanilla and honey or maple syrup until smooth.","Stir in chia seeds and grated coconut.","Cover and refrigerate for at least 30 minutes or overnight until thick and creamy.","When ready to eat, top with fresh mango and your choice of nuts.","Opal's tip: Homemade coconut milk makes this pudding extra rich and creamy. Have a bowl of fruits 30 minutes before eating for best digestion. Fresh ripe mango on top takes this to another level — pure Caribbean healing!"]
+  },
+  {
+    name:"Opal's Jamaican Healing Lentil Soup",tag:"Caribbean Soul",time:"40 mins",servings:4,
+    desc:"Simple, warming and packed with plant-based protein — with a Caribbean soul that makes it truly special.",
+    ingredients:["1 cup dried lentils, soaked overnight","1 small onion, diced","2 cloves garlic, minced","2 carrots, chopped","2 tomatoes, diced","4 cups vegetable broth","5 pimento seeds (allspice)","1 whole scotch bonnet pepper (left whole for flavour without too much heat)","Fresh thyme to taste","1 tsp Italian herb seasoning","Dried oregano and bay leaf","Sea salt to taste"],
+    equipment:["Large stainless steel pot","Cutting board & knife"],
+    steps:["Soak lentils overnight in water, then drain and rinse in the morning.","Add all ingredients into a pot.","Bring to a boil then reduce heat and simmer for 25 minutes until lentils and vegetables are tender.","Remove the scotch bonnet and bay leaf before serving.","Opal's tip: Soaking your lentils overnight makes them softer and quicker to cook — and easier on your digestive system too. Keep the scotch bonnet whole for beautiful flavour without too much heat. Remove before serving or leave it in for the brave ones! 🌿🇯🇲"]
+  },
+  {
+    name:"Opal's Healing Cashew Punch",tag:"Drinks",time:"5 mins",servings:2,
+    desc:"A creamy, nourishing punch straight from my healing journey — seamoss makes this one truly special.",
+    ingredients:["1 handful raw cashews","2 ripe bananas","1 cup coconut water or plain filtered water","1 tablespoon maple syrup","Pinch of sea salt","½ tsp pure vanilla extract","1 tablespoon homemade seamoss gel","Ice or cold water (Opal uses cold water)"],
+    equipment:["Blender"],
+    steps:["Place all ingredients into a blender.","Blend until smooth and creamy.","Serve immediately and enjoy!","Opal's tip: I use cold water instead of ice — it keeps the punch creamy without diluting the flavour. And that tablespoon of seamoss gel? That's where the real healing magic happens. Seamoss is packed with 92 of the 102 minerals your body needs — especially important during recovery."]
+  },
+  {
+    name:"Opal's Homemade Almond Milk",tag:"Pantry Staple",time:"15 mins + soaking",servings:6,
+    desc:"Pure, creamy and free from preservatives — once you make your own almond milk you'll never go back to store bought.",
+    ingredients:["2 cups raw almonds","3 cups water for soaking","3 cups fresh water for blending (adjust for thinner or richer milk)"],
+    equipment:["Blender","Nut milk bag or fine mesh strainer","Sterilized glass mason jar or ice tray (for storage)"],
+    steps:["The Proper Way — Soak almonds overnight in 3 cups of water.","Drain and discard the soaking water, then remove the skins from the almonds.","Place almonds in blender with 3 cups of fresh water and blend until smooth.","Strain through a nut milk bag or fine mesh strainer.","Store in a sterilized glass mason jar in the refrigerator for up to 3 days, or pour into an ice tray and freeze for up to 1 month.","The Lazy Way — Wash the almonds, pour boiling water over them and leave for 10 minutes.","Pour off the hot water and run cold water over them to cool, then blend and store as above.","Opal's tip: The lazy way is my go-to on busy days — works just as well! Freezing in ice cube trays is a game changer — just pop a few cubes into your smoothie or porridge!"]
+  },
+  {
+    name:"Opal's Homemade Healing Curry Powder",tag:"Herbal Seasoning",time:"10 mins",servings:1,
+    desc:"Store-bought curry powder can't compare to this — made from scratch with powerful anti-inflammatory spices that support your healing body.",
+    ingredients:["2 tbsp coriander powder","1½ tsp fenugreek seeds (or 2 tsp powder)","4 tsp turmeric powder","1 tsp celery seeds (not celery salt)","1 tsp onion powder","1 tsp garlic powder","8 bay leaves","1 tsp paprika (½ tsp works but Opal likes it strong and rich!)","½ tsp cumin","1 tbsp annatto seeds","3 whole star anise"],
+    equipment:["Coffee grinder (dedicated to spices)","Glass storage container"],
+    steps:["Grind all ingredients together in a small coffee grinder until you have a fine, fragrant powder.","Store in a glass container in the cupboard.","Opal's tip: I use 8 bay leaves and a full teaspoon of paprika because I love my curry powder strong and rich in colour — adjust to your own taste. Turmeric alone is one of the most powerful anti-inflammatory ingredients on the planet — perfect for a healing body!"]
+  },
+  {
+    name:"Opal's Jamaican Curry Chickpeas",tag:"Caribbean Soul",time:"50 mins",servings:4,
+    desc:"A hearty, healing Caribbean classic — rich in plant protein and bursting with flavour. My family loves this one!",
+    ingredients:["2 cups chickpeas, soaked overnight in 3 cups salted water","3 tsp Opal's Homemade Curry Powder","2 tbsp oil (olive, avocado or coconut)","2 cups homemade coconut milk","1 tbsp Italian herb seasoning","1 tsp sea salt","3 green onions","5 pimento seeds (allspice)","1 whole scotch bonnet pepper","2 cloves garlic, minced","3 cups water"],
+    equipment:["Medium stainless steel saucepan (proper way) or stainless steel stove-top pressure cooker (lazy way)"],
+    steps:["The Proper Way — Drain and discard the soaking water from the chickpeas.","Heat oil in a medium saucepan. Sauté curry powder and salt for about 30 seconds.","Add drained chickpeas, stir well and add water. Cook over medium heat, checking every 15–20 minutes until chickpeas reach your desired tenderness.","Once cooked, add coconut milk, scotch bonnet pepper, pimento seeds, Italian herb seasoning, minced garlic, salt and green onions. Simmer for another 10 minutes until sauce is rich and fragrant.","The Lazy Way — Pressure Cooker: drain soaked chickpeas, heat oil in pressure cooker, sauté curry powder and salt, add drained chickpeas, stir and add water.","Cook under pressure for 30 minutes then release the pressure. Add coconut milk, scotch bonnet, pimento seeds, Italian herb seasoning, garlic, salt and green onions. Simmer uncovered for a few minutes to combine all the flavours.","Opal's tip: Serve with Basmati or Jasmine rice — or my twist on Nigerian Jollof rice for something really special! The scotch bonnet left whole gives beautiful flavour without the heat — remove before serving! 🌿🇯🇲"]
+  },
+  {
+    name:"Opal's House Bread",tag:"Baking",time:"3-4 hrs (bread machine)",servings:8,
+    desc:"Simple, wholesome and made with love — this bread machine loaf uses homemade almond milk for a truly nourishing everyday bread.",
+    ingredients:["1 cup homemade almond milk","2 tbsp honey","2½ tsp active dry yeast","1 egg, beaten","2 tbsp organic butter, softened","1½ tsp salt","3½ cups bread flour"],
+    equipment:["Master Chef bread machine","Measuring cup"],
+    steps:["Proof the Yeast: warm your homemade almond milk gently on the stovetop — never in the microwave. In a measuring cup combine the warm almond milk and honey, then sprinkle in the yeast. Let it sit for 5–10 minutes until foamy and active.","Load the Bread Pan in this order: yeast mixture, beaten egg, softened butter, salt, then bread flour.","Start the Machine — Menu: Basic (1), Loaf Size: 900g, Crust: Light. Press Start and let your bread machine do the rest!","Opal's tip: Always warm your almond milk on the stovetop — microwaving can kill the yeast and your bread won't rise properly. I use organic butter — when you're healing, every ingredient matters. Choose organic where you can."]
+  },
+  {
+    name:"Opal's Super Chunky Coconut Granola",tag:"Breakfast",time:"35 mins",servings:6,
+    desc:"Forget store-bought — this homemade granola is wholesome, satisfying and so much better for your healing body.",
+    ingredients:["1½ cups rolled oats (toasted the day before at 200°C)","½ cup desiccated or unsweetened coconut flakes","½ cup slivered raw almonds (crushed almonds work too)","½ cup raw pecan halves or walnuts","1 tbsp coconut sugar","¼ tsp Himalayan or Celtic salt","3 tsp coconut oil","⅓ cup maple syrup","1 tsp pure vanilla extract","¼ cup dried fruit of your choice"],
+    equipment:["Toaster oven or regular oven","Small stainless steel saucepan","Large mixing bowl","Baking sheet with parchment paper"],
+    steps:["Preheat oven to 325°F (162°C).","Add oats, coconut, almonds, pecans or walnuts, coconut sugar and salt to a large mixing bowl and stir to combine.","In a small saucepan, combine coconut oil, maple syrup and vanilla extract. Warm over medium heat for 2–3 minutes, whisking until fully combined.","Pour the warm mixture over the dry ingredients and mix well. Spread evenly onto a parchment-lined baking sheet.","Bake for 20 minutes then remove from oven. Leave as is and break into chunky pieces when cool, or stir for a finer store-bought style granola.","Store in a sealed container or ziplock bag in the refrigerator for up to 2 weeks.","Opal's tip: I use a toaster oven — the smaller size means more concentrated heat and perfectly golden granola every time. A regular oven works just as well though! Serve with homemade almond milk for a truly healing breakfast."]
+  }
+];
+const MILESTONES = [
+  "Complete your first mood check-in",
+  "Write your first journal entry",
+  "Try a recipe from the Recovery Kitchen",
+  "Post in the Sisterhood community",
+  "Book a session with Dr. Carr",
+  "Complete 7 days of mood check-ins",
+  "Write 5 journal entries",
+  "Try 3 different recipes",
+  "Check off all weekly wins"
+];
+
+// ── STATE ──────────────────────────────────────────
+let state = {
+  name: "",
+  journey: "",
+  moods: [],
+  journals: [],
+  posts: [],
+  milestones: [],
+  streak: 0,
+  wins: []
+};
+
+function loadState() {
+  try {
+    const s = localStorage.getItem("pr_state");
+    if (s) state = {...state, ...JSON.parse(s)};
+  } catch(e){}
+}
+function saveState() {
+  try { localStorage.setItem("pr_state", JSON.stringify(state)); } catch(e){}
+}
+
+// ── ONBOARDING ────────────────────────────────────
+function obStep1() {
+  const name = document.getElementById("ob-name").value.trim();
+  if (!name) { alert("Please enter your name, Queen 💜"); return; }
+  state.name = name;
+  var s1 = document.getElementById("ob-step-1");
+  var s2 = document.getElementById("ob-step-2");
+  s1.style.display = "none";
+  s1.classList.remove("active");
+  s2.style.display = "flex";
+  s2.classList.add("active");
+}
+function selectJourney(el, val) {
+  document.querySelectorAll(".journey-opt").forEach(o => o.classList.remove("selected"));
+  el.classList.add("selected");
+  state.journey = val;
+}
+function obStep2() {
+  state.journey = state.journey || "healing";
+  saveState();
+  document.getElementById("screen-onboarding").style.display = "none";
+  initApp();
+}
+
+// ── APP INIT ──────────────────────────────────────
+function initApp() {
+  showScreen("home");
+  document.getElementById("bottom-nav").style.display = "flex";
+  updateHome();
+  renderMoodHistory();
+  renderJournal();
+  renderSisterhood();
+  renderMilestones();
+  renderStreakRow();
+  document.getElementById("journal-prompt").textContent = PROMPTS[Math.floor(Math.random()*PROMPTS.length)];
+}
+function updateHome() {
+  const h = new Date().getHours();
+  const greeting = h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : "Good evening";
+  document.getElementById("home-greeting").textContent = greeting;
+  document.getElementById("home-name").textContent = `Welcome back, ${state.name} 👑`;
+  const v = VERSES[Math.floor(Math.random()*VERSES.length)];
+  document.getElementById("daily-verse").textContent = v.text;
+  document.getElementById("daily-ref").textContent = v.ref;
+  document.getElementById("streak-badge").textContent = `🔥 ${state.streak}`;
+}
+
+// ── NAVIGATION ────────────────────────────────────
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(s => {
+    s.classList.remove("active");
+    s.style.display = "none";
+  });
+  document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
+  var target = document.getElementById("screen-"+id);
+  target.classList.add("active");
+  target.style.display = "block";
+  const nav = document.getElementById("nav-"+id);
+  if (nav) nav.classList.add("active");
+  if (id === "kitchen") {
+    document.getElementById("kitchen-list").style.display = "block";
+    document.getElementById("kitchen-detail").style.display = "none";
+  }
+  window.scrollTo(0,0);
+}
+
+// ── MOOD ──────────────────────────────────────────
+let selectedMoodEmoji = "", selectedMoodLabel = "";
+function selectMood(el, emoji, label) {
+  document.querySelectorAll(".mood-item").forEach(m => m.classList.remove("selected"));
+  el.classList.add("selected");
+  selectedMoodEmoji = emoji;
+  selectedMoodLabel = label;
+}
+function quickMood(e, emoji) {
+  e.stopPropagation();
+  const labels = {"😊":"Joyful","💜":"Grateful","😔":"Sad"};
+  const entry = {emoji, label: labels[emoji]||"", note:"", date: new Date().toISOString(), day: new Date().toLocaleDateString()};
+  state.moods.unshift(entry);
+  updateStreak();
+  saveState();
+  showToast(`${emoji} Mood saved. You're doing great, ${state.name}! 💜`);
+  renderMoodHistory();
+  renderStreakRow();
+}
+function saveMood() {
+  if (!selectedMoodEmoji) { showToast("Please select how you're feeling 💜"); return; }
+  const note = document.getElementById("mood-note").value.trim();
+  const entry = {emoji: selectedMoodEmoji, label: selectedMoodLabel, note, date: new Date().toISOString(), day: new Date().toLocaleDateString()};
+  state.moods.unshift(entry);
+  updateStreak();
+  checkMilestone(0);
+  saveState();
+  document.getElementById("mood-note").value = "";
+  document.querySelectorAll(".mood-item").forEach(m => m.classList.remove("selected"));
+  selectedMoodEmoji = ""; selectedMoodLabel = "";
+  showToast(`${entry.emoji} Check-in saved! Streak: 🔥 ${state.streak} days`);
+  renderMoodHistory();
+  renderStreakRow();
+  document.getElementById("streak-badge").textContent = `🔥 ${state.streak}`;
+  document.getElementById("mood-streak-pill").textContent = `🔥 ${state.streak} days`;
+}
+function updateStreak() {
+  const today = new Date().toLocaleDateString();
+  const days = [...new Set(state.moods.map(m => m.day))];
+  if (days[0] === today) {
+    state.streak = 1;
+    for (let i=1;i<days.length;i++) {
+      const prev = new Date(days[i-1]);
+      const curr = new Date(days[i]);
+      const diff = (prev - curr) / (1000*60*60*24);
+      if (diff === 1) state.streak++; else break;
+    }
+  }
+}
+function renderStreakRow() {
+  const el = document.getElementById("streak-row");
+  const days = ["S","M","T","W","T","F","S"];
+  const today = new Date().getDay();
+  const doneDays = new Set(state.moods.map(m => new Date(m.date).toLocaleDateString()));
+  let html = "";
+  for(let i=0;i<7;i++){
+    const d = new Date(); d.setDate(d.getDate() - (today - i));
+    const done = doneDays.has(d.toLocaleDateString());
+    const isToday = i === today;
+    html += `<div class="streak-day ${done?'done':''} ${isToday&&!done?'today':''}">${days[i]}</div>`;
+  }
+  el.innerHTML = html;
+}
+function renderMoodHistory() {
+  const el = document.getElementById("mood-history");
+  if (!state.moods.length) { el.innerHTML = ""; return; }
+  const recent = state.moods.slice(0,10);
+  el.innerHTML = `<div class="section-label" style="padding:0;margin-top:20px;margin-bottom:10px">Recent Check-ins</div>` +
+    recent.map(m => `<div class="mood-entry">
+      <div class="mood-entry-emoji">${m.emoji}</div>
+      <div class="mood-entry-content">
+        <div class="mood-entry-date">${m.label} · ${new Date(m.date).toLocaleDateString('en-CA',{weekday:'short',month:'short',day:'numeric'})}</div>
+        ${m.note ? `<div class="mood-entry-note">${m.note}</div>` : ""}
+      </div>
+    </div>`).join("");
+}
+
+// ── RECIPES ───────────────────────────────────────
+function openRecipe(idx) {
+  const r = RECIPES[idx];
+  document.getElementById("kitchen-list").style.display = "none";
+  const detail = document.getElementById("kitchen-detail");
+  detail.style.display = "block";
+  detail.innerHTML = `
+    <div class="recipe-detail">
+      <div class="back-btn" onclick="document.getElementById('kitchen-list').style.display='block';document.getElementById('kitchen-detail').style.display='none'">← Back to Recipes</div>
+      <div class="recipe-tag">${r.tag}</div>
+      <div class="recipe-detail-name">${r.name}</div>
+      <div style="display:flex;gap:16px;margin-bottom:16px">
+        <span style="font-size:12px;color:var(--text-muted)">⏱ ${r.time}</span>
+        <span style="font-size:12px;color:var(--text-muted)">🍽 ${r.servings} servings</span>
+      </div>
+      <div class="recipe-detail-desc">${r.desc}</div>
+      <div class="recipe-section-title">Ingredients</div>
+      <ul class="ingredient-list">${r.ingredients.map(i=>`<li>${i}</li>`).join("")}</ul>
+      ${r.equipment && r.equipment.length ? `<div class="recipe-section-title">Equipment Needed</div>
+      <ul class="equipment-list">${r.equipment.map(e=>`<li>${e}</li>`).join("")}</ul>` : ""}
+      <div class="recipe-section-title">Method</div>
+      <ol class="step-list">${r.steps.map((s,i)=>`<div class="step-item"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`).join("")}</ol>
+    </div>`;
+  checkMilestone(2);
+  saveState();
+  window.scrollTo(0,0);
+}
+
+// ── JOURNAL ───────────────────────────────────────
+function saveJournalEntry() {
+  const text = document.getElementById("journal-text").value.trim();
+  if (!text) { showToast("Write something first, Queen 💜"); return; }
+  state.journals.unshift({text, date: new Date().toISOString()});
+  document.getElementById("journal-text").value = "";
+  document.getElementById("journal-prompt").textContent = PROMPTS[Math.floor(Math.random()*PROMPTS.length)];
+  checkMilestone(1);
+  saveState();
+  showToast("Journal entry saved 📖");
+  renderJournal();
+}
+function renderJournal() {
+  const el = document.getElementById("journal-entries");
+  if (!state.journals.length) {
+    el.innerHTML = `<div class="empty-state"><div class="empty-icon">📖</div><div class="empty-text">Your healing story begins here.<br>Write your first entry above.</div></div>`;
+    return;
+  }
+  el.innerHTML = state.journals.slice(0,20).map(j => `
+    <div class="journal-entry">
+      <div class="journal-entry-date">📅 ${new Date(j.date).toLocaleDateString('en-CA',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</div>
+      <div class="journal-entry-text">${j.text.replace(/\n/g,'<br>')}</div>
+    </div>`).join("");
+}
+
+// ── SISTERHOOD ────────────────────────────────────
+function postToSisterhood() {
+  const text = document.getElementById("post-text").value.trim();
+  if (!text) { showToast("Share something with your sisters 💜"); return; }
+  const initial = state.name ? state.name[0].toUpperCase() : "Q";
+  const colors = ["#9B5ED4","#C9A84C","#7A3DB8","#2ECC71","#E74C3C"];
+  const color = colors[Math.floor(Math.random()*colors.length)];
+  state.posts.unshift({name: state.name||"Queen", initial, color, text, date: new Date().toISOString(), likes:0, liked:false});
+  document.getElementById("post-text").value = "";
+  checkMilestone(3);
+  saveState();
+  showToast("Posted to Sisterhood 💜");
+  renderSisterhood();
+}
+function toggleLike(idx) {
+  const allPosts = [...state.posts, ...SISTERHOOD_SEED];
+  if (idx < state.posts.length) {
+    state.posts[idx].liked = !state.posts[idx].liked;
+    state.posts[idx].likes += state.posts[idx].liked ? 1 : -1;
+    saveState();
+    renderSisterhood();
+  }
+}
+function renderSisterhood() {
+  const feed = document.getElementById("sisterhood-feed");
+  const avatar = document.getElementById("composer-avatar");
+  const nameEl = document.getElementById("composer-name");
+  if (state.name) {
+    avatar.textContent = state.name[0].toUpperCase();
+    nameEl.textContent = state.name;
+  }
+  const allPosts = [...state.posts, ...SISTERHOOD_SEED];
+  feed.innerHTML = allPosts.map((p,i) => `
+    <div class="post-card">
+      <div class="post-header">
+        <div class="post-avatar" style="background:${p.color||'#9B5ED4'}">${p.initial||'Q'}</div>
+        <div class="post-meta"><div class="post-name">${p.name}</div><div class="post-time">${p.time||formatTime(p.date)}</div></div>
+      </div>
+      <div class="post-text">${p.text}</div>
+      <div class="post-actions">
+        <div class="post-action ${p.liked?'liked':''}" onclick="toggleLike(${i})">💜 ${p.likes||0}</div>
+        <div class="post-action">🙏 Amen</div>
+      </div>
+    </div>`).join("");
+}
+function formatTime(dateStr) {
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const mins = Math.floor(diff/60000);
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins/60);
+  if (hrs < 24) return `${hrs}h ago`;
+  return `${Math.floor(hrs/24)}d ago`;
+}
+
+// ── PROGRESS ──────────────────────────────────────
+function newAffirmation() {
+  const el = document.getElementById("affirmation-text");
+  el.style.opacity = "0";
+  setTimeout(() => {
+    el.textContent = `"${AFFIRMATIONS[Math.floor(Math.random()*AFFIRMATIONS.length)]}"`;
+    el.style.opacity = "1";
+  }, 200);
+  el.style.transition = "opacity 0.2s";
+}
+function renderMilestones() {
+  const el = document.getElementById("milestone-list");
+  if (!state.milestones.length) state.milestones = new Array(MILESTONES.length).fill(false);
+  el.innerHTML = MILESTONES.map((m,i) => `
+    <div class="milestone-item">
+      <div class="milestone-check ${state.milestones[i]?'done':''}" onclick="toggleMilestone(${i})"></div>
+      <div class="milestone-text ${state.milestones[i]?'done':''}">${m}</div>
+    </div>`).join("");
+  updateMilestoneBar();
+}
+function toggleMilestone(i) {
+  state.milestones[i] = !state.milestones[i];
+  saveState();
+  renderMilestones();
+}
+function checkMilestone(i) {
+  if (!state.milestones[i]) {
+    state.milestones[i] = true;
+    renderMilestones();
+  }
+}
+function updateMilestoneBar() {
+  const done = state.milestones.filter(Boolean).length;
+  const pct = Math.round(done/MILESTONES.length*100);
+  document.getElementById("milestone-bar").style.width = pct + "%";
+  document.getElementById("milestone-pct").textContent = `${pct}% complete (${done}/${MILESTONES.length})`;
+}
+function saveWins() {
+  const text = document.getElementById("wins-text").value.trim();
+  if (!text) { showToast("Share at least one win, Queen! 🌟"); return; }
+  state.wins.unshift({text, date: new Date().toISOString()});
+  saveState();
+  showToast("Wins saved! You're doing amazing 🌟");
+  document.getElementById("wins-text").value = "";
+}
+
+// ── TOAST ─────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 3000);
+}
+
+// ── BOOT ──────────────────────────────────────────
+try { localStorage.removeItem("pr_state"); } catch(e){}
+loadState();
+document.getElementById("screen-onboarding").classList.add("active");
+</script>
+
+<div id="screen-about" class="screen">
+  <div class="top-bar">
+    <div><div class="top-bar-title">About the Founder</div><div class="top-bar-sub">The Queen behind Purple Reign</div></div>
+  </div>
+  <div style="padding:20px">
+    <div style="text-align:center;margin-bottom:24px">
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAEsASwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDqSvTntQB0GfxpSuTxkg8UrDPviu4/b7jlUg04DsRSrnFOHSkQ2AXjBH608qTwOtNFKDnp+FMhhtPTpSqueKMEY9qlTGBnrQS5DVUqwwMiplX5aQAE5FSjpnFDMpSI9vNPUcc07g9KAoFBLYhFJj3FOJ60KtIVxFXkkcimbSSal6ZAHFNwd2c5poExoXjHajbmnYJPFFAXGFOnpSbcdelS5UA+lRsBQNMYxwcetKTxjPNLwPrTckNigrcTbjnrSY9qG6jNOPA+tBQwjjmkP0p3Uc01+lA0MbggdBSMcU7imlcnOaC0JwRzkmmYAPOc1IOOtNb6ZoKQdU6VERxUuDtprDvQNEYzSO1OOR07U0getBSG9aY44yak4PfFIw4waCkyDHcUhY085A/GmHIPag0TLec9M07+HkUwDnnpUg56YoMWKM09PamhfbNSj7nbNIzkxrAkDBpRQRwKcvSmTcBk05QRSjHAxT1x0oIbFTrzU4IxUWD6Cnr15FBlLUUD2xTmwqfMQM8cnFUDruiJfXFlJqlrHcWzKJo3kClSwyBzjJx6Zr5O8Z/EHxLr2pXlja6tqEGmfa7lljUMF8t3ztbJyVAHAPTJxWVSqonkY/NaeEin8TfbyPq+61vRLSZ4bnV7GKSJijq86gqwUMQRnqFIJ9Aa4DX/AI5+B9LgR7Nr3VJXzmOKIx+Xg4yxfGAcZGAcivmSzebNyFM8rT4LM7DzOWHy85wSOuetUbuZ2uCkiu6swXdjHGfT1rneIk3ZHz1biPETXuRS/E+ptE+Nnhm7024ur1JbORJ1SOA5YtG3RyQCABzuxnHoc10XhD4j+GPEw1L7NcPZ/wBnYeU3ZVEMROBIGzjBPHryPWvj/wCZJBicowGxgoIBU8ECn2rOERZBLwPLwnKtznLfjg0liJImnxDiotc1n+p91o8b/wCrkR+ATtYHgjIP0PalINfIfw98ea34S1x9Q8xrgXAMNxBcSkpMVBCknrlccEduOhr6D+G3xI03xZF5F0sOm6lkBIWmBWfrkxk4z/u9ee9dFOtGWh7+AzujirRl7su3/BO3I/KmN15qZlqFxk+lbHtoGxgYxmkwCO1DDA60IMrmgroIQOvXFM3euKkHTpTHXke9BSA8io3zk4pwPXk0jEdBQUhv55pp6c08UxxzyKCkI3T3poz6cU9V3AZPGaRjgnFBQxiRzTRk96fjOM80Y20FXI+gyaYec5qUnPB71GQAaCkMOQM03d3NP789BTCoxgYNBaY1mB5zUbBs8U9sgdKYQDTLSNAqBihRyR2pQNvO4mlAqTmuKMdDUgA6gVGvBp4ORTJYuaEBJ9qFGTipFGOKCG7ABinDmgBQ3HNSbDjIoIbFXp0rl/iP470bwRp0U2orJcXNwSILWIje+OrH0Uev5ZrqUTtnFfIfxU8YL4w8Z3N5PC8FraKYbVHzkqpxn8Tk/l6VlWqckdDxc4zB4Sl7nxPb/M5fWdZfW/Ed9qgeOBrqZ5SpH3NxJ7+maNOTUL6ZoLaV5jJJ8uCTkDp19eKPD9jNqN4hEaPJkZTHyqD61738PfCC20KXMyqCRn7oH6V4mLxUaCu9z4vC4WeJlds4DSfhpfXtvFFdXToineVC/wAfck9+K7vRfhpoVrEvm2wmcd5OTXo0WmrHEGUCp4bLjgV87WzCrV0TPo6GAoUtbanCReA/DsYCppkIA5GRmq2o+ANCuoGiW2WMt3Fekvp7EEkY/Csi/t2jc54FTTr1U73ZtOjSasoo8h1v4OySKZ9MuyGDFgrc1wumm60DXbdWkmhv7abfHuj4Dqc7x6jOK+kba9e3YZI21H4p8K6R4t0oLEI4L6Il7ecDlWPVT7GvcwuMctJM8LF4FRfNTVjY+H/jPTfF2krPbyCO+jGLq1bh4yDjOP7pPI/+tXRSHnpXk/wbTUNB8V6n4TvrYRSKpuJHAH7wgKFIP93B4x6nNesSA19JSnzwTPrspxLxOHU5b7MaeRg0gbtmkwcZpQK0PUDcKGPcUYHaj60AhgwOtIVA5pW6+2KbkGgtCAnqKaSaXHTBo255oKEJzTHz1pzcHNMGc4HSgpCrQ2Mc0Ckf3oGNbGOmaaeTzSk880hYDigpDSvrTNoFSHkjmggEZyaB3ICvPIxTSBn/AOtUzYxUTdfvEUFJl1Bk9elOGRUanA6e9Sc7ec0MyYoxwRTkGT0xTAeakXBNBL0F4AGKkX5vpSbc0KDmgzbFUc4FTqMdaiTIPqamyOlMzkyO8US2c8bMUVo2BYMQQMdiOn1r4Xu7N31FrUZEm5sZYttBY8Z/Kvux4hLDJESwEilcq2CMjHB7H3r5L8M6DJN4rvkvreQm2uGRw3UsGI/p/OuHGS5UmfJcRwcp0vn+h0fwx8IRqkF7chg6kMUJ4IHSva7EIkIVVAB9q53TLbybMuQAxAyR0OK0rO7OQK+Mx85VJ3ZeCpRp07I0ZLoq+DwBWzpJR0D5z7VzE1zZxxGa5uoogD/EwFbXhq7sbmM+VfwE9Mbv881z0odkb1JJLVnTNAskJYISAK5vVoYyWyAT9K6m0uoo4nhyp4HfrWFrU1pHHI4OWz0reUbIxhJ3OH1KJUzngUaHeSWl4hL7kJwRntVTxVr+n2MgEql3xuKjgVzNt4oEzPNHp74HACk9ffrW9KnNapE1atN+62eoa/B/xPvD3iCzjy4l+wXbDvFJnaT9GroWP5Vy2k3w1PwRNdxBlaF43kRhyrRyK38ga6p/vHsM8V9Zl8nKnZnZkUtKkFte/wB//DDDxTcZp+OKBge9d574g5prinsaYcnikNEUnPFR4ORUrqccU3B6UGqYc4Ge9BPGPWk5xSfWgdgOCaRuOBSd8YoYHrQUISCKbnk+lHSmqfloHYVh9KicU9m54ppP40FJWAdOBSE9qM8Uw4oHYRjimEgHtSuM0bfYUy0kXRge1ITyB3pFbNKEJIJpGVh4A4p9MAwQakXkighjuRinpSDryOMU5DhqDJiginrTD94GpEoIY8GvHtds5LT4g63GigpPKsygnn50B/nkV7CBmvPviQn2bxJYXEXyvcRYGP4yjYxjvwwPtiuPHq9Fnh51T5qKl2f/AAB8gENggwB8pGKyPsl9qV+LOGU20CpmWUHnnoB71uakNqRxueQoJrDutT2TyJGTGigszHpXx1R6u25xU43SvsWT8P8ARZGVpr67mKjJ3OMH6UqeHbeznX7GLkqnBBkGD+FcXq/xJg0qKRoWed4uSiLvcjON2Oirk4y3X0qTRvG+uahb3epR2JmsrS5FvI0UySEkjcCqbUYrjPIHHpXRCnX5L9DGVTDRqct9T03Tb+SBlhLuxXgZGOKw/E+oXKTyBmIB5GDWhoN1FqlhHdNDNG8gOzdGVbj1DAGofEdgzNHOMEquW+tcc5pOz3OuEeqObi0dr0G+1A28KcYaXkn0xngVom+tbGCK2iuohnhRuAz9Kw/Eena9qiSNpV4LaSCAC3YEM5kOM8EYRevzcseOgrkJPC3i+4utSNzfXCzmRGtP9JMsIA+8GDgsw6Y/GuuNGM6d5TSOOWIlTqWjBs9v8P3H2nw9qVnIm2aSFtjqMFuP1rqUcyRI5BBZQSD64rzbwDYeItN09Le9e2ZFkWVGR2bAxhlGeQD6HOPpXU+HNduL/wAQ67pMsQK6ZJGBMoADeYCwUDvhQCT717WVVoxbpXud2V1FCvK6s5/pc3yCDzSck9KcSWFIOK9w+jCkY4HFKajbigaBie/Sm4zyKCQep4ozigtIYymmgNnpUhJ700t7YOaCkwPHNJweCaCaY3tQVuI2d3tmkIwTg4FGDk0nXv1oKExyaYw9KUnHA6U0nvkUFIbnGRSDjrnNOwDzgUpSmO4zjqaDnPFKflppIyflFIZZB79qkTOOtRr0HNODdqZkyTq2aegyD7Gos88U5WxSJaJhwfelH40wHPOadmgzaJBz1p6nGPTNRA8U9T+VBDRV8R3l1Y6BqF5ZQ+dcw27yRRj+JgOK8ZbW77XbWC08QzT2uq2777dhJmOTIBI6ZHGPyr3JlWSNo3AKsCpHseK8v1vwkl/qUumXUnkeRbKYZ1O04DYRgfXsfpXhZ1KrBRnH4ep5WYUnNeT+42NRkWRIJAOHhU4P0oTR7DVIBFdRgoR0BxTRGW0gIeXtiUBx1X/9dN0i8Ecq+Y3GelfNYm9+ZHDhknHlY+P4deHbVjLZaJp+9/vl85b68HNatv4ZgN0JGigjXbgx28Zyfqx6fgBW3pd7ZyOvnybYu+DXOeMPEMmp3aaDo2YUzlmjOCV7kn1qIzqzjqyZU4QlojcjtbNkdIWTEXG1SDtPpxWTqlndOrrjCnue/T/Cs5PF/hTwxpKf2vci0EbEOoyzF88gAcsaz2+J+iaxBcSaRKJY8bSHQq6fUHBFYRoVXJySdjT2sIvlbVzQsYoI5ts58vnDNjge9bken2+5ZlEU8f8AC68g15TH8UrGC8OmQ6bNfneRNchlWOP1GWPzY74rrPCmvReX9stGC2UzkCPPy5B6r7V0PDzh8WhCrQn8LudlNJDGmECgDqBUGg2UUV7qd9GoBvJkL+5SMLWLqGqRMx2uMd61/Ct19otZP9kg16uRu2Iszpw6UcRF+v5G0eBSA5pM009eK+wPcsOJzSP2FIOOtIxA4P4UhpDdvbvSZOck804GmHrkUy0OByvuaYwx9KdnH4UjHNIaI2J7Ubuw6UpFR57UFoceTgU1uKcW44phyfr7UDSGE/lTW4+lPIH4dqjzng0FoUdKZvycUp6803A7UykSE5ODTWBJ6mkBx2pS4pCsTqeMUufpUceQDmnA5wDTZFiTg85FPH5ZqNc5p/vzQSyVOO1PqJTT9x6UjNocM1IMYqIGng0ENEq9OKyPFUcYjs7l1HlrMIZ+OsUnB57fNtOa1Kj1DY1hMsgDKydD69v1xXNjKSrUJQfVHNiIc1NnK2UCRw3NusryhSyhn647Z/l+Fchf3RimJzja2DzXUW15IuumAWc4iMQ86UoQqSZ4Uk9zz+VcR4ltXGozruIw5yK+NUH7NKZ86pyp1HYuS+JDDaSZk24HUnpV34e3MJSfUrsH7VJ91T1RO34nrXM22gi7lSSRi0SEMV7H61a1vVbXw68TzyHMpwEH3nbPQfnR7O6tBalSq3d56I2dW8OWWp6pLqUltE00vzZYFjn1xnA+tLP4ZtLmxgnk0I3McYMc06ryPrgjj61Baab4w8Q23nRwJp9qrJhZdwyG6cAEnPvXT2/wg8QS2d3NHe2kgUAOTDIm0nsfz6VdGlJfFLUqrFWvayOBvtOs4JPslpJB5S8CMbOPwFXIZ47fT2tJFUADvxj0x6V0t98Edf8AP8suiygpu2wHA3HA5z69fSvP7nSPFtjr91o+oxWsVnbOqiWQl3lyM/Ljp29qr6sp6qRg63I7JX9NSVJ9Rik8p3MyMTtcdfoa9U+H88bWckOyTzOMtg7eByM9M89O9cWlrb2Wnblj+eSVjnOeAABXefD6If2GZlUZmlY9OuMCu7K4t19EdGEUp14uL2uzePWmkHnvmnSMCTtGMmm7u1fTp3V0fSwlzRUl1F7008mkJ56/WkJzVGiQ7ikPTimhscml6+1IBhpCTxileo2oLWorMBkGkbpxTO+cHinZIFMqwz7oPNNVmGeRzUjdMYphz6UikNc8Uhx1pH5puc9ulBVhe3BpjZHtR3pSeMUyhAe1IaUgZprcnoaALgwBxSjHXvSKMe9OwOv50MyYoOMU4EUxsnilGaBEi0oPPWo1OAKeDxzQS0PUk09TUQPOKkU0iGiUEGnFk2gclgc/T/OajB65qnqc0trNDeBXe2UMlyEXcyL1DgDkgEcgc4Oe1RNbHNW0Sb2uS6xbm802eIth9paMnsw5FeU6/cRzTxXQGBKNsg9GHWvSrbxBYXkqw6XP9sdj88kHKQL3Zm6A9gvU+nevLviHD9h1+6RcpFId6r6A8givJzKiqj5l6Hh5pK0o1YbbEWmXixTNaO2dwO0+o9K1YVt5kW7ntYppbdg6M6BjGwIO4Z+lcRE8tzHlHxNGcoR6/wD167Hw3cfaIAykKzjawPZu6mvCcHB3OGM1PRnreifESaW2YMlmVkjCCRojsLK27Bx0649utehprmq3ljLJaSaGwZWYsLpiPlAHOBz+lfK1z9u0e5a807cYs/PCegP0rWk8b2X2BUfS7aK6kOZJEZlJ+o3Y/St6fvK6ZpPC4edmtH+H6HtPjrxJq8Ssn9v2FtIp/wBVYw+ZIzAg5LOSFB+nTNeP6k630L3E87SzJcDcxP3iR/n9K5/W/G5uk+yafZwR5GC0CElvqec1Y0Npv7KCT5OHLsT1JP8A9anNqK13JcKVKHJS1b3fkTasX86Cyi+YiNQwAJwTz0HP/wCqu+0m8tE0+2sNGWa48tAhm8lkjTjlmZgMnknAya5vwHZNda3e61KCY4z5UP8AvY5P4Dj8a7dmIOSSfqa9nLcM40+d7s9TLMJKUHUva/5EigKirzwMc0jHmkHWgjkmvVStoe5GKirITIxkUU0nGMUhz/hTLSHOQCAOnekDcZ4puc03cPxoHYcWGevFMPpmkbrRyBQUkOC4FJwBSbiT1ppznHQ4pDsBPXij1pvvRmgqw3HOCKaAOnepCOKZgYyaBoa3Wm5px+hqM9eaYxc8+tI3XgGkJ6UF8E9KBlzOKVTz1qMcijJBoIsSY7hqd0GM0wHjJpQeKCWOye1KG4pp54pRxxQIlXpkU9T+FRqcdKcDx6UiGSD3p+5VUszBVAySe1QSzRwRGWVwqDuawtSvprv5RmKDsp6n6114XBzxEtNu54+aZrSwMNdZPZf5+RzvxZ8Q+ILXQ59Q8PXMkQtMEooBLpn5m5Hbrj0FcHf6nqWtaLY3+tXAe/eI5IUDYMnapA9sfrXpN0iPC0bKGVgQQe4PUV5nc2baTfNpU4LwEFoGY/fjz0z6jp+RrLiTDvD4eLpx92+p8VRxNXFVn7Sb16dPuMrT7zyr7ZL+7ccOM9j0I9RXT2V4tvcb+kUhAfHZ+zfj0rntR0rzVWNy4TP7m6QZMZPZh6e3T6VRbUbrRWFjq0QwflSYcxyj2P8AQ818WrVVdHbzOm7SPYojFewLKu0yDhx6+9W49Ks5UMhtULY+9ivJdI8YvpEglMhmtzxknJA9G/x7116fEPSpoFWNjGSMk+Z3rndGUWdkK8ZI2r3SbW3DMIkXuAKzre6gt4Z3lIEaq2PcgHgfiQPxrnNX8Y6e2ZJrxioHChutc1d+J5Nbu4rO0TyrdGH5DnH51dHDylJSktDKviIxg0nqe4fDzULH+zV0NJ1N9aRLNPGRhiJCSHHqD0yOmMV1JwT9K+f7fVbiy+JdvPbPiUafBnHQ4LAr9CCBXu1jfWt5EjwSrl1DbCeRn+dfa0qL+rwqR2aPWyPNYVoewqWUo6LzX+fcsqcHFKxpSMcmkA/WkfRDcdqRhj3pxPOaHx1oKTIjxmmHPXvTzzTT0ploaDzzzTs0zJxTd2PoaRVh5P40MaaD70xm9KASH/WkNIrcUhPOBQOw0vjigMCcUjdev4000F2Q/r+NRuMd6dnvTWORxQCQ0nnFNJ55P6UN97imufm7UDaLoPbtSgZppHpTkNO5kOAwPUU73pKVRk80hCkd6VefrVaa9t0YorGVh1CDOPx6VSm1G8OVgtIox2aWYfyAP866aWDrVPhieVic6wWHupzV+y1/I18rGpdmCqOpJwBWVdeJNNhcxwO11IP4YlJH59KyNQjvrvBurhDGP4U5z+PQflVSf5EAQ8p93/CvWoZPFa1Xf0Pl8ZxTVqNrDx5V3er+7Zfia02pNdBJZUCkdI+oX/69VZZy9ZltL87rnIJ3VZEgPQV69OlGnHlirI+Xq1p1ZudR3bHSuT0rK1/SY9W08xFtkyHfDJ3Rv8D0NaXWlHFKtRhWg4TV0xRk07o4nRLiW1nazvY9kqnaynkGulfSdK1CwaO5hRomHKOuVP8AhSatp0dzNHdbRvXhh/eFXIbZlg/0dy0ZHRq/KM1y2WW4hxXwvVP+uqPosNXWJp+90PKfE3gaGCVn0m7mtVJ/1cnzp+Brk7rwxrEeWAifnqnevbb61klGCh6+lZtzo2QDGACOtcKxMkhywkW9Dx630C9RwblgpPQd66LRLD7Awk2811Umht5+4qCe56kVWvbdY5BEOW6U1iXPcl4Xk1Kmiq114081gctaMAfTDLivWvDsivYPEwy0Tbl+h6/rXm/hG0kXxDczSrjbDsUnsSwOP0rutKnNteI7H5CdrfjX6Tw+nLL4t+f5nhYqNqzNqSa4C/6PfT25znAbKn8DT01nVI2wfs82ONjLsLfQj/Cqt8uxiUPHeqgkBAVuRXrPC0ai96KNKWYYqh/DqNfP9Do4tehYqJreaFv4s4IH+NWxqlgwyZwv+8pH9K5VJ8HazZ9Caf5ybsYBrjnk9FvRtHr0uKcZDSST+X+TOpS8s5TtjuYSx7bxzUrAYrkWeLuq/lVqwvZIGAjkJTujHIP+FctXJ5JXhK56eF4tTlavCy7r/L/gnQn2ppA6kc0yyuY7q3EijaejLnOKlYV484ShJxktT7ChXhWgqlN3TI80wthulPIxTMDOT2qToVhc8UgY9aVsdsVHyBQNDjTTzwRQxzRgUDsIM5pSeKKR+BQIjY9aYc56UrA5ppJz0oKsX+1OX2qJTkc08EUGTQ4thSxIAHXNZd/fmYeWgKxZ655f/wCtVnU3HkrHnhz83uBWPdyhn46AYr2srwkZr2stex8PxNm1SNT6pSdl1fr0HG7CfKuFHtVead/vZyKibnj86RV59B6GvfSR8akL5zHlWIqNzvHYUSIAflP4UzBH0psTuivcA27C4Ayi/fH+yep/DrVtB8u7HB6YoyNuHAIptsDH+66x/wAB9vSkg0JFJ6UvI+lKAAeKbNJHFE0kjhI0G5mPQChsZxfxS1XVIbS00vQm2391KJGbP3IkIJJ9i2B9M10nhrV1udHinaLZK6AyxA5Mbd1/A/piubs4J77XLzWruJ4WlxDbwuOY4V6Z9CeSfrUsGlSWOsi9tbt47Wb/AF9v1Dv/AAkenofWvJx+WU8fTcat7Pby81+pWHxM6FTnidbBe27jrk+4plxFlCV/i6VXmQOFeNR5g7Hjd/8AXot9TiZSGUqUOMGvzDN8rxGXVOSpqns+j/4PkfWYPE08RHmjo+xWnixG3Bz9KwGhCXbSSDLdq6mSaOQ5UDFZGv3dlpto2o3G4pCQQijLO56ACuPLcPPF4iNGPX8uv4GuLnGlTc30JrS1EK5C/veWf3Pt/KsXxf4lsNOsJbSOVJ7+6jaKK3Q5KlgRubH3QOvrxXPtrvjfWpQ+mWFtpkBPEkgLtjseePfgVq6N4P03TY0l8sz3BO+WaQ5LN3P5mv2OjBU6SpUlaKVj4mdSU5OXVmr8Ndcv7iw/sHXD/wATO1jzDKT/AMfMQ7+7Dv8AnXTMeTniuVv9ONx5UkMjW9zA2+3mQcxt/UdiO4rV0rW47yRLLUESy1LoUJxHP/tRk9f93qK6KfuLlYoy6M05D+7yOo5oWXOTTWJBIP5VEoK5U/55rYplgSZBJ7mlim2kkngCof4Sab1RvcGi4jb0e7MTqc4X+L6V0isDXHWj7CvfFdDpk5aHynPzR4xnup6f4V4ebYfaqvmfZcKZhabwk+uq9eq/X7y67dqhLnkD1pTzTcYNeEffJWHKcikzxQOeaaxFACMRnihG5zTeT3pFJDU7F2Ji2OaD05phPbFIW4oJsNeo93uKVzk03r6UWKLinHXpT+vQ0xRxT0wDxQZsz9VkAmC5+6v86xrhwuT1q/rL7bmT2AH6Vks2TX1eAjy0In5Fm1R1MdVk/wCZ/hoVZrb7UT50jlf7qsQP0qnNoEHLW891aydnhnZT/PB/KtVRxxT1Pau08+yMiJddshgyx6nEOocCOX8x8rfpVyzv7a8DIheOZPvxSLtdPqP69Kugiq95BBMQ0qMrp9yVR8y/Q/5FFhbAxkVsHBB6H1oV9j4PCn9DVWC4Mcq2twyusn+plHQt3Hse+PrUspDIVPBHBoTQrkt1eQWcJnupVijH8THqewHqT2A5NUpy9+YZJFkjhVt6RHgluxf3HYdAfU9IZraC5ure9kTfNCpiUkkhD6gdAT0z1rQiUbAvbFLV7he5XlhVZAw/i/nTjEsiGN84PHHUVYZAy4Pao+h4xQVYo3N42nKz6ireSBzcxqWUD1cDlfryPpVmOO3vYEngeNi67lkRgUkH1/rVk4dcGuTudAu9J1GXUPDd19iMp3SWrDdbyHvlf4SfVcVxY3C08VTdKrHmi/vXmjSnVnRkpwZteY0ZKuNp5BB6ioXsRd3Ecs67kjBZFPTcf4vy4/OoYNVgv82t/A1jrCrkW7HK3AHeNv4vp1rXtwSMkcEDFfM5BkTwOPqynqklyv1/VW1PSx+OWJw8VH5ogjgVTtCgAdqlMY21M4wEYD2NEgwMjpX2rPHsQeV8vSq95YW91C0U8KSKeoZcir6DIwKGX1qLA0ZJh1GyVBZTrcRL/wAsbpiceyv94fjuFWIr55kBnspbaTngurr+YP8AQVbfGPWoroD7MxA5GDQlYRMCSmRyaaxIQ/ShD8g+lJMpaHAJUnHI69apgRC6uZLgW1mVXBxLOwyE/wBlR/E36D3PFdNpUhidN8jPn5dznJwa52JUiwqAKAMADtWpZSbhisa1NVIOL6m2Grzw9WNWO8Xc6djzTWPHWmQSiSBH7kc/WnMfSvjpRcW4vofs9GrGtTjUjs0n94ZNNbrnikJNITUmqAHrTRwSaGzjpSLnpTKRIx4pjnjinAEjk01gPxoEiJiRSc9v50rUU7lF1Se1OQ4NMxjoaUHmpZmzD11iL2Uew/lWQWy2K2NcQfaHbjnH8qxf4zX12Cf7mPofj2ZK2Mq/4pfmTJk1MOxqKPGKmU5rtRxMWmseacRg8Ux+tDJKt/ZrcxHy2EcoIIbsSORn/HqKqNOZEfcu2aPCyJnkHt+HvWkSc4qpqEa/67GMjZIR/d7H8DUtCK9j8/mxnqQHH1FW4mGBjoRWbp8kkc0fn43hihxWmFCnA6HkUk7giVT7U1lHp1pyEcDNPI456VVi0VwSDT2XeuMdaGUZ6U5TipKMzUdJt9StWjuIw7Icr2ZT2Knsah0u5uYJltNRfzCeIbgjHmf7Lejfz+tahcrOGHNVb5UkZoJY9yuCSPTHehLW5m12Lr/NFj0H9aTO5Bmq9s0gDQuwdouC4/iHBB+uKl3Y707jHIOeKV8Y9aRM/hSt14FSMiYZpJAWQqO4xTz06CmjhaCSGCTMSZ7AZqSR8KGwTlgAAM1Wh4Z17ByP1qwgJKjtnP6U0ShGYnBKgfjVqyfB61Ay45xT4iQeKbGdJpcmVkjJ6fMKtkk8VkaY2JVJPtWtn1r5bMqXJXb7n6fwtivbYFQe8Hb5br+vIQkjijORg0jmm8/jXAfSpEgxSDAOaYW5oLc80DJN3bimM1GcioyTmhCSFYgdabkelITwajY89aBmgrU5TzUIPHWlU80E8pl63/rmPb/61YhOHPvWxrbfvW+lY7DkZ619dg1ajH0PxnMJc2Lqv+8/zJkqZDzVeM8VNGTXYjlJSaSgDIqeCyvJ42lhtZXiHVwp2j8elTUqQprmm7LzFGEpO0VcpyYBqMgSAqwyCMEVbltJ9wUqAfrVeW3nhXLxsB64rhea4G9vbR/8CRs8LX35H9xhXbbXJzyrAH2I/wDrVpwy+ZACDXUeGvDnhbVbGVL7USmoS5wvmbNh7YBGD/8AXrlLm0udH1GSxuuqHg9mHYisMDm+GxlaVKk9V+Pmu6HWwdWhBTmtGWk5qT8ahUggEVMMda9c50KRxmmN64p7H06YpmQTipaHciJ56dKSWITRBtzKw4DKcEU5h9KIicMh79KQIhihEKeWhLdyzHJbPcmgc8561OM+X05FMZNrsPxFUxseo+UCjHWmKxzTmbilYLjfekbgUqjvQRUkFDdi8kToDhvzFW4uW/P+lRwWN9e6stvYWVxdyPFu2QxlyAD147c1M0U9rctb3UEsEqjlJUKsPwNTGrBy5Lq/bqNRe9tB7KaRBtapVx3oYCtbDaLlo5wAOorajbzIgw7iudt3Ct1rZ0+TehQnpyK8jNqPNTU10Pp+E8X7LGOk9pr8Vqv1LBzmkJ+uKVumajYmvnkfpiH5zzSHHrTATSlu9IBS2OlJuGKaSc00kZpgOJ7Uw4z1oYkNxzTSeelIdi4PenxVED608GgTMjVRunk56NWS4+YjFa+oAm4lUd9p/MVmum3Oa+uwcualH0PxjMIOni6se0n+Y1D3qxEuarLwau2flfaIUmkKRM6iRh1C55P5V1Saim2ciTbsTWlxFa3cNxPD50UTh3jx94A5I969UTx34VvdMKWckBjZSojCnp6dOKmj8P8AhKwgcR2/nBl3eYeSR2wT/SuO1yz0e0FuqySN0LMxDHr7V+X8QZxSx04ukmrd7fl/wT6XLsG6MXzlHWNSiN5FJbaYrQjqQOn51Xvtcs5I2Q6exbHQcGuhil8PpZ7UjnmfHYVzupXOmQszvZ3AjYHIyB6GvlFaUrHrNu10Z7HTbk+ZuaFsdGXofbFUNYtzcQoI5VkKD5TvzxWtbXGl3FvvKtHu4AZf096Zd2SsmUjSSPGc4row+Kq4aqqlNtNGVSlGrBxkrpnMQTOhKt24q7FNkdRS39gHGYXCt6H0rLhmkjleCXAZTjr19DX6bkfEH9oS9lUjaSXTqfL47APDLmT0NjeMU0kZqssvHNHmAivpzzixkY5po+9wahMgxTo29TSuCZaPXOeGps44U+nFRvKojGASd2AB1NLM7FAxUqPQ1Rd7oYeOlLk4xUHmHPNODc80EkxakPTrUTOKa0h7VDEdj8L9Qax8R7OSk8RXj+8CCP611XxEj0zxHbyyWksbXduN8MicqSfvR7u4yO3Ga8a1K9ls7CS4jGSuAwzj5SQDW3ZahM8CgzlGOPun7tfnXEM6uEzFVqWjdn92h9DlqhVoOM+mhUjc9DkEcHPapd3FN1aGSG6WYkFLgFwR69G/Xn8ariXnnivvsHio4rDwrR2kv6+48WtTdObg+hZBweK0tMlIlUZ4PBrFEoz1qxa3Gxxz3rWtBVYOD6hh68qFaNWO8Wn9x0xOKbRGRIiuP4hmgg18W04uzP2ulUjVgpx2auJ7UxhTjx1pp69KRqgB6ikPSjNGaAEzRn2pCeaQ5z1P4UD3LeBnNL0pAaM5NDIKWox4ukk7PHg/UH/69Z12uO3Fbd4FNuWbqnIrIva+iyupzUrdj8t4nw3scwlLpJJ/o/xRTUfnUybcHcM54qAH5qmQgGvXR88zuPhbe6DZ2lzYalIst20gaFLmbIWPGMLu7Z7Cul1e30a+ll+xW0U9wsQCpbtkAZ6nArySWKGfHnRI+OhZQcVq+GNal8N3ck9nGpjmUJNGrbSwByMHsQa+JzfheVaVStQe+vLZfgz28Lmaioxnf1udBalNNcpe6ZIZ1+8m8AY7VR1iSCZRLHpUu3Ps36Zqn4l+IOnlzc3C38L/AMRlgLqAPdc0th4s0nUtPDWlxbTq/IaMjIz6jsfavha+BxOHd6kGvVHu061Kp8LT+Zs+AZ/CEFxImpNKL6NlkthONsIPdmYemBgfz7YHiUSjWb2eIMYnmd4wV2DBPoOAazNQUCcTIyRqDy+7GRVBdRugRBveSH+71H59qz9lKdlBakWjTm5SZO13GmfPY8ng965XVZxD4gGJNyzJx+FbNxcQyFlVGVhyAwJriNYa5TWI7iSNwiuAMqe9e3kXPQxsJtPt9+h5+ZyjOg0mdcs42jmlE4xVNEkdAY0ZsjsKaS6Ha6sp9CMV+ppnyxdM3vSi4xxWc7lRmq8twV70+awXN5ZSFDpIFdW3KSMjNOF7PMdr+SqKSdseSNx6nJ+nSsJZ2MajByfSrUZKw4zgmmpDuafmeuKa8oBFUjLyxDZoCzy/djkb0wpp8wXLhlB70eZ71FHZXhPMW3/eOKsx6bKeZJVH+7Sd2FmV5ohdRSW7LuEqlCPr3rVs7OGONA/zMO5PWtPTtCsbvTLi+tp2imtADNBNIv7xCeGToTjjIx3zUZRAp/ka/M+JMfKvivZtOPJprv8A12Po8toqnS5t2ySKC1lRRJggcgGmXVrZbeLcZ9UODVZ22vkHp0qdJl2ZLfX2rwqeNxOHa9nUaXk2d7pUqitKKKq22mh/3slxF+Kmr9pa6EuMyXMz4zy4UfoKzbtUdnZxj5cAjise43w2zR27kT5yhYk59q73nuYSjb2r/rzMVgsPF35Drn1SxtysCQyog/2t2Pzq4kiyxrJG25GGVI7ivPp9Q1loQIdAu5S2FDKVP48Gux0GKaDR7aG4DCSNSp3deprqyrG1q8pRqu/mfVZRiGpew+zbTytY0GYVH3NB5zTeRXtn0SQ4YoPTNNz60jH60DAnigMKYT6Um7H/AOqgbRcU8U7dUIIA4pQxzimRYmCh1ZW6EYNZV0hVSGBypwa0VfBqle7vPcHkMAR/KvSyury1HHufG8Y4TnoQrreLt8n/AMH8zIkPzVLGeBnpTJVw2TTAecdBX0qZ+ell2ZlGwc+p6UxEOcu5Y+g4FJ5oxtHSlU5bJ6VQA8RbnGB7dawtU8MaXqU/mSwvFP8A89reQxyD/gQ/+vW+0oI2r+dC7UTjGPWs5041FyzV0Ut7oyrPSYNOlSUXFxORHsCTyeZk/wB4k96003Y3O2T2A6CoAfNnMnZeBUpYdNwP0qKOHpUFanFL0KlUlN+87j2kPTOKY2W5JJ+tN3AnpS7hng1sRcbdQW9zCYp4ldSMemPxHIqO3tore0jtm3TRAnYJjvIHpk81OjYbJ7VWldpLgcnAFJpA2TR2NgoZhaR/MRnOSM/SnSaZpzRlfskOG6kLSwnAI796UMUlIzlT+ho5UPQibS7E4Bt1VlGABwCKlTTbLYCIUYH15qQyHcOKW0YGSSIZGMMB9aOVBoCQQxj5IkUey08YxxxSMecGmOSOO9Ow7is1MJHWmMTkE0Z4680Etmp4Zn8nX7IlnEbyiKQIASUf5WGDx0NM1OI2uo3NqysphkaMhuSMHHOOM1l7xhh7HtmtzxNG66rMRGybtrlTD5eCVB+7261+c8Z0FHFU6q+0mn8n/wAE9zKZ3hKL6GFPNznIHOCKjSbJODnnnNVL8uH2g85ohikUbzjkgDJr5B7Hq7snu5sx4XkkcVlzQ3Dzq7PtJHFacsZCksuMCsm6mmd1SLOFzljSg9S5LTU0LGd4413TcgE5J/pWn4YvJJru5jdmZGHmDPbnH6/0rJ0q3tZD5l+rTKB8sRPyfiO/41t6Fd2CSNZwrslbLDChVIH8IA4GB2+pruyuyxafNY9DLn++ptu2v9L5mwDTWNBODUbEZr68+xSHbqTPFMLYpAeOKB2HjketNpCTjikz70wLPagUwE0oNAiQHmob8fu1l/unB+hqTNDAMhRuQRiro1HTmpdjjzHCLGYadF9V+PT8TFu/vcCqznIwKtyg/MjD504NUpcjpzX11OfNFNH4tKDg3F7oXeEGAfqfSljdpFwoIXNUbqVvMSHHLcn2FWo2AXA4rVMm+pbUqq8VXuJdxKrSO5281AH74p3G2TjaFA280bgvPSodxpwwV5NK5JIr88UpaoC2Ohpu/nGadwLO/io1I38Z5qLf2p8J+YE0XAtZO1gDtYggVj2Wt2CMLO5eSKbpiVSu4+x6GtNmxyOaybm3t5ZXhuI0kjl5wwzg1Mm+g5M2EuFAwc+x7GpbWcm9JB+UxHH4EVgW1pPa8WdwxjH/ACxlO5fwPUVesJ2a72NGyMqEkdR26GhSC5qSSYZjTWk461Rln+Yik80+tVzBcsvIOTUZlz0NVDMW6VJCCRuqea5Ny1HhmAJOD15rT8R6/p1xqd4bPyY7dH2II5mkXCgLkMeSOKxpH8uF37Khb8hmvMYfFltfyqht54YAcs3kbU59hwBXx3FmFnXdJxTdub9D08trxouV3vY7qG7a+vG8kblLYya6S2tiAAcED0HesHwze6e1shg2sD0IPH510qXtuiEllz9a/Pa14u1j6SjZq7YyaEMSVXIA79q5rUx5VztQ8nGa3pNRt2L7XXp69ay5IYrmcMQG9hSpR7l1WmrIxR4n0O3kaCe8kMyuUOIW2KR6tjFaFhBdrr9jeJhoJD8hU5zkdfpjNWNUt7CCBHuLdWbcCAvU47Vv6Nb2Vvp8X2G3WGCRd6IOihucD0+le5hMJh6zjOk3zLe/6GuX4SviqvI5JJNPrexdVutBII5pnFIWwcV9Gfe2HN16AUDtzxTN1PBBHWhiHY4qM4J60pII4NNJ54JpIRP2oBx1qPJxQzHBqhpEyc04HmoYCTjntUh6mkHUoalFsuFmHSQbW+o7/lVCUFW3DtVTxvdzW1xpxibGJM4PfJCn9DVuQkgE19Hl7fskmfkPEShHMqqgrar77K5nlGe7eVx16VZGMAYpP4sYpTwxx6V6KPEsMkbGQD+dRB8DkUSHmmMe1FyWxTKMnBz7Uhm5IqvKSM4qEu2M5qWwuXDLxTDIag3EinxHd1FCYieNixx3qzHkD3pkSKD0pZGIBxirKGyy46mqVw6u64PKnIqheX04uTGNoGcdKbI7Z69KyciW7myHG3IbnHNNsZGM0r9Fxiue1DU7q2ti0RQH1IrU0hn/ALOErOzvKAzFv6VPtLsdy8zbm4POaaW52g5qqjM0gBPU1bQAZwBxVp3FuSwx4GcVMMKpwayda1G4srYtCEzz94ZrnItY1GRN73BPXjAApSqqAzr9UuRHptywPAiYfmMVh6PYRQW0YEa4Pt7VzEWuajeak1nNMDCeqgYzzXa/cgtwvQk/yrOElUdxblW40SwkkMkcbW8h6tA5jJ/LioG0iQfKNV1Hb6eaP8K1cnFMcmoqYPD1HecE36I0VScVozNOnPEmE1K/3dMmQEY+hGKWNdWs3je2uxeEA5jnULkezKBg/nVpmO6mlmVtwPIHFc9XLMHUTUqa+4qOIqwd1JjxdDWoJYg7Q3EJKyQv94D1HqD6iun8HG5GlbLhCqxuVhz1K+v0zVbwlbwnTXnMamR5jliOeAMfzNbw4UAAAdK+Sjl0cLiJOD91bI/TOH8DUcYYyct1t/X9XHsRk0zjPFDnhqZ/Wuw+sHkjtRk7c00H5M0vSmIBnpS4z6U3JGaXJFIGf//Z" style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid rgba(201,168,76,0.5);margin-bottom:12px;display:block;margin-left:auto;margin-right:auto">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#E8C97A;font-weight:400">Opal McKnight-Kleinsasser</div>
+      <div style="font-size:11px;color:#9B5ED4;text-transform:uppercase;letter-spacing:1.5px;margin-top:4px">Founder · Thrice Breast Cancer Overcomer</div>
+    </div>
+    <div style="background:rgba(74,44,110,0.15);border:1px solid rgba(122,61,184,0.25);border-radius:18px;padding:20px;margin-bottom:16px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(237,232,245,0.92);font-style:italic;line-height:1.9">
+        Purple Reign was not born in a boardroom. It was born in a hospital room — mine.<br><br>
+        My name is Opal McKnight-Kleinsasser, and I am a thrice breast cancer overcomer. Three times, I faced the diagnosis that changes everything. Three times, I chose faith over fear. Three times, God brought me through.<br><br>
+        But what I remember most from those seasons was not the treatments or the surgeries — it was the loneliness. The 3am moments when fear crept in. The days when I needed someone who truly understood what it felt like to navigate life with a diagnosis that touches every part of you — your body, your mind, your spirit, your family, and your finances.<br><br>
+        Because cancer does not just attack your health. It attacks your livelihood, your savings, your ability to work, your plans for the future. The financial weight of a diagnosis is real, and too often it goes unspoken.<br><br>
+        Purple Reign was built for those moments. This sanctuary was created so that no woman has to face her journey alone. Whether you are newly diagnosed, deep in treatment, recovering, or celebrating life as an overcomer — there is a place here for you.<br><br>
+        You are not a patient. You are a Queen. And Queens reign — even through the storm.
+      </div>
+      <div style="font-size:13px;color:#C9A84C;margin-top:16px;font-weight:600">With love and faith, Opal 👑</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:16px;margin-bottom:14px">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#C9A84C;margin-bottom:10px">🎙️ The Little C &amp; Me Podcast</div>
+      <div style="font-size:13px;color:rgba(200,185,220,0.7);line-height:1.7">Opal hosts The Little C &amp; Me podcast — documenting her personal journey as a breast cancer overcomer. Available on YouTube, Podbean, and Apple Podcasts.</div>
+      <a href="https://thelittlecandme.com" target="_blank" style="display:inline-block;margin-top:12px;background:rgba(201,168,76,0.15);color:#E8C97A;border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:8px 18px;font-size:12px;text-decoration:none;font-family:'Jost',sans-serif">Visit thelittlecandme.com →</a>
+    </div>
+    <div style="text-align:center;padding:16px;font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(200,185,220,0.6);font-style:italic">
+      "She is clothed with strength and dignity, and she laughs without fear of the future." — Proverbs 31:25
+    </div>
+  </div>
+</div>
+</body>
+</html>
