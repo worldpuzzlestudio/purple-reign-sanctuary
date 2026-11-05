@@ -70,6 +70,7 @@ body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);
 .mood-emoji-btn:hover{transform:scale(1.2)}
 .section-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;padding:0 20px;margin-bottom:10px;margin-top:20px}
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px}
+.feature-grid .feat-card:last-child:nth-child(odd){grid-column:1/-1}
 .feat-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius);padding:18px 16px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden}
 .feat-card:hover{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.04)}
 .feat-card-icon{font-size:28px;margin-bottom:10px;display:block}
@@ -197,35 +198,6 @@ body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);
 .affirmation-btn{background:transparent;color:var(--pr-light);border:1px solid rgba(122,61,184,0.4);border-radius:20px;padding:8px 20px;font-family:'Jost',sans-serif;font-size:12px;cursor:pointer;transition:all 0.2s}
 .affirmation-btn:hover{background:rgba(122,61,184,0.15)}
 
-/* ── TALK SUPPORT ── */
-#screen-talk{background:var(--night)}
-.talk-section{padding:16px 20px}
-.dr-profile-card{background:linear-gradient(135deg,rgba(74,44,110,0.2),rgba(17,9,32,0.8));border:1px solid rgba(122,61,184,0.3);border-radius:var(--radius);padding:22px;margin-bottom:16px}
-.dr-profile-top{display:flex;gap:16px;align-items:flex-start;margin-bottom:16px}
-.dr-photo{width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,168,76,0.4);flex-shrink:0}
-.dr-info{flex:1}
-.dr-name{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold-lt);font-weight:400;margin-bottom:3px}
-.dr-title{font-size:11px;color:var(--pr-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.dr-org{font-size:12px;color:var(--text-muted)}
-.dr-bio{font-size:13px;color:var(--text-mid);line-height:1.7;margin-bottom:16px}
-.availability-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.3);border-radius:20px;padding:5px 12px;font-size:11px;color:#2ECC71;margin-bottom:16px}
-.avail-dot{width:6px;height:6px;border-radius:50%;background:#2ECC71;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
-.service-tag{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:8px 10px;font-size:11px;color:var(--text-mid);text-align:center;line-height:1.4}
-.pricing-section{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-sm);padding:16px;margin-bottom:16px}
-.pricing-title{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:12px}
-.price-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--text-mid)}
-.price-row:last-child{border-bottom:none}
-.price-amount{color:var(--gold-lt);font-weight:500}
-.book-btn{display:block;background:linear-gradient(135deg,var(--pr-mid),var(--pr-light));color:white;border:none;border-radius:30px;padding:17px;font-family:'Jost',sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:1px;text-align:center;text-decoration:none;width:100%;transition:opacity 0.2s;margin-bottom:10px}
-.book-btn:hover{opacity:0.9}
-.payment-note{font-size:11px;color:var(--text-muted);text-align:center;line-height:1.5}
-.crisis-card{background:rgba(231,76,60,0.08);border:1px solid rgba(231,76,60,0.25);border-radius:var(--radius-sm);padding:16px;margin-top:16px}
-.crisis-title{font-size:12px;color:#E74C3C;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.crisis-text{font-size:13px;color:var(--text-mid);line-height:1.6}
-.crisis-link{color:#E74C3C;text-decoration:none;font-weight:500}
-
 /* ── SUBSCRIPTION ── */
 #screen-subscription{background:var(--night)}
 .sub-section{padding:16px 20px}
@@ -350,11 +322,6 @@ body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);
       <div class="feat-card-name">Progress Path</div>
       <div class="feat-card-desc">Celebrate your milestones</div>
     </div>
-    <div class="feat-card" onclick="showScreen('talk')">
-      <span class="feat-card-icon">🕊️</span>
-      <div class="feat-card-name">Talk Support</div>
-      <div class="feat-card-desc">Faith-based counseling & coaching</div>
-    </div>
   </div>
 </div>
 
@@ -475,56 +442,6 @@ body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);
 </div>
 
 <!-- ══════════════════════════════════════════════ -->
-<!-- TALK SUPPORT                                   -->
-<!-- ══════════════════════════════════════════════ -->
-<div id="screen-talk" class="screen">
-  <div class="top-bar">
-    <div><div class="top-bar-title">Talk Support</div><div class="top-bar-sub">Professional faith-based care</div></div>
-  </div>
-  <div class="talk-section">
-    <div class="dr-profile-card">
-      <div class="dr-profile-top">
-        <img class="dr-photo" src="data:image/jpeg;base64,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" alt="Dr. Jacinth Strachan-Carr">
-        <div class="dr-info">
-          <div class="dr-name">Dr. Jacinth Strachan-Carr</div>
-          <div class="dr-title">Ph.D., Ph.D. · Faith-Based Counselor</div>
-          <div class="dr-org">Hope Alive Ministries Network</div>
-        </div>
-      </div>
-      <div class="availability-tag"><span class="avail-dot"></span>Available Wed–Sat, 12PM–6PM MST</div>
-      <div class="dr-bio">Dr. Jacinth Strachan-Carr, Ph.D., Ph.D is a faith-based counselor, life coach, and emotional support specialist dedicated to helping individuals and families find hope and healing through life's most challenging seasons. As the founder of Hope Alive Ministries Network, she offers compassionate, Faith-centered care rooted in integrity, wisdom, and grace. Whether you are navigating a cancer diagnosis, managing a chronic illness, walking through grief, or carrying the weight of emotional exhaustion, Dr. Carr provides a safe and nurturing space where you can be heard, supported, and empowered to heal and move forward with renewed faith and hope.</div>
-      <div class="section-label" style="padding:0;margin-top:0;margin-bottom:10px">Services Offered</div>
-      <div class="services-grid">
-        <div class="service-tag">Faith-Based Counseling</div>
-        <div class="service-tag">Life Coaching</div>
-        <div class="service-tag">Cancer Support Care</div>
-        <div class="service-tag">Grief & Recovery</div>
-        <div class="service-tag">Family/Caregiver Support</div>
-        <div class="service-tag">Spiritual Wellness</div>
-        <div class="service-tag">Prayer & Encouragement</div>
-        <div class="service-tag">Dream Interpretation</div>
-      </div>
-    </div>
-    <div class="pricing-section">
-      <div class="pricing-title">Session Pricing</div>
-      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>🚨 Emergency Session (45 min)</span><span class="price-amount">$120 → Book</span></div>
-      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>Individual (30 min)</span><span class="price-amount">$85 → Book</span></div>
-      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>Individual (45 min)</span><span class="price-amount">$110 → Book</span></div>
-      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>Individual (60 min)</span><span class="price-amount">$170 → Book</span></div>
-      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>Individual (90 min)</span><span class="price-amount">$200 → Book</span></div>
-      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>Family/Caregiver (60 min)</span><span class="price-amount">$180 → Book</span></div>
-      <div class="price-row" onclick="window.open('https://calendly.com/jaccy-carr00/hope-alive-counseling-session','_blank')" style="cursor:pointer"><span>4-Session Package</span><span class="price-amount">$560 → Book</span></div>
-    </div>
-    <a class="book-btn" href="https://calendly.com/jaccy-carr00/hope-alive-counseling-session" target="_blank">Book a Session with Dr. Carr 🕊️</a>
-    <div class="payment-note">Sessions available via Zoom & WhatsApp Video<br>Payment accepted via e-Transfer & PayPal</div>
-    <div class="crisis-card">
-      <div class="crisis-title">🆘 In Crisis?</div>
-      <div class="crisis-text">If you are in immediate distress, please call <a class="crisis-link" href="tel:988">988</a> (Canada/US Suicide & Crisis Lifeline) or text HOME to <a class="crisis-link" href="sms:741741">741741</a> for the Crisis Text Line. You are not alone. 💜</div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════ -->
 <!-- BOTTOM NAV                                     -->
 <!-- ══════════════════════════════════════════════ -->
 <nav class="bottom-nav" id="bottom-nav" style="display:none">
@@ -539,9 +456,6 @@ body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);
   </div>
   <div class="nav-item" onclick="showScreen('journal')" id="nav-journal">
     <div class="nav-icon">📖</div><span>Journal</span>
-  </div>
-  <div class="nav-item" onclick="showScreen('talk')" id="nav-talk">
-    <div class="nav-icon">🕊️</div><span>Support</span>
   </div>
   <div class="nav-item" onclick="showScreen('about')" id="nav-about">
     <div class="nav-icon">👑</div><span>About</span>
@@ -706,7 +620,6 @@ const MILESTONES = [
   "Write your first journal entry",
   "Try a recipe from the Recovery Kitchen",
   "Post in the Sisterhood community",
-  "Book a session with Dr. Carr",
   "Complete 7 days of mood check-ins",
   "Write 5 journal entries",
   "Try 3 different recipes",
