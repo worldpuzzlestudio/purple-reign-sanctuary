@@ -71,6 +71,13 @@ body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);
 .section-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;padding:0 20px;margin-bottom:10px;margin-top:20px}
 .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px}
 .feature-grid .feat-card:last-child:nth-child(odd){grid-column:1/-1}
+.crisis-card{background:rgba(231,76,60,0.08);border:1px solid rgba(231,76,60,0.25);border-radius:var(--radius-sm);padding:16px;margin:20px 20px 0;display:flex;flex-direction:column;gap:8px}
+.crisis-title{font-size:12px;color:#E74C3C;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.crisis-actions{display:flex;gap:8px}
+.crisis-actions .crisis-btn{flex:1}
+.crisis-btn{display:block;text-align:center;padding:12px;border-radius:30px;border:1px solid rgba(231,76,60,0.4);color:var(--text-lt);font-size:13px;font-weight:500;text-decoration:none;transition:background 0.2s}
+.crisis-btn:hover{background:rgba(231,76,60,0.15)}
+.crisis-text{font-size:13px;color:var(--text-mid);line-height:1.6;text-align:center;margin-top:2px}
 .feat-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius);padding:18px 16px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden}
 .feat-card:hover{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.04)}
 .feat-card-icon{font-size:28px;margin-bottom:10px;display:block}
@@ -339,6 +346,16 @@ body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);
       <div class="feat-card-desc">Celebrate your milestones</div>
     </div>
   </div>
+  <div class="crisis-card">
+    <div class="crisis-title">🆘 In Crisis?</div>
+    <div class="crisis-actions">
+      <a class="crisis-btn" href="tel:988">📞 Call 988</a>
+      <a class="crisis-btn" href="sms:988">💬 Text 988</a>
+    </div>
+    <a class="crisis-btn" href="sms:741741?&body=CONNECT">💬 Text CONNECT to 741741</a>
+    <a class="crisis-btn" href="tel:18006686868">📞 Kids Help Phone · 1-800-668-6868</a>
+    <div class="crisis-text">For emergencies, call 911.</div>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════════════════ -->
@@ -569,17 +586,17 @@ const RECIPES = [
   },
   {
     name:"Pineapple-Stuffed Sweet Potatoes",tag:"Jamaican Twist",time:"75 mins",servings:2,
-    desc:"Sweet potatoes are one of nature's most healing foods — rich in antioxidants and gentle on a healing body. My Jamaican twist on a classic.",
-    ingredients:["2 sweet potatoes, washed (Jamaican sweet potatoes work beautifully here — creamier and sweeter)","2 tablespoons coconut or almond milk","1½ tablespoons honey","¼ teaspoon ground coriander seed powder","¼ teaspoon sea salt","¼ cup pineapple, cut in cubes","1 tablespoon chopped walnuts"],
+    desc:"Sweet potatoes are a comforting, nutrient-rich favorite — rich in antioxidants and gentle on a healing body. My Jamaican twist on a classic.",
+    ingredients:["2 sweet potatoes, washed (Jamaican sweet potatoes work beautifully here — creamier and sweeter)","2 tbsp coconut or almond milk","1½ tbsp honey","¼ tsp ground coriander","¼ tsp sea salt","¼ cup fresh pineapple, cubed","1 tsp chopped walnuts or almonds","2 tbsp shredded coconut, for topping"],
     equipment:["Oven","Baking sheet","Parchment paper","Mixing bowl"],
-    steps:["Preheat oven to 400°F. Line a baking sheet with parchment paper.","Bake potatoes 50–55 minutes until very soft.","Cool slightly, slice in half lengthwise and scoop out the center, leaving a thin shell.","Mash with nut milk until smooth, then stir in honey, coriander, salt and pineapple.","Spoon back into shells, sprinkle with walnuts and bake another 15–20 minutes.","Opal's tip: If you can find Jamaican sweet potatoes, use them — they're creamier, sweeter and absolutely divine!"]
+    steps:["Bake the sweet potatoes at 400°F for 50-55 minutes, until very soft. Let them cool slightly, then slice in half.","Carefully scoop out the cooked potato with a regular soup spoon, leaving a thin shell.","Using a fork, mash the potato with the nut milk until smooth. Stir in the honey, coriander, salt, and pineapple.","Using the same soup spoon, fill the potato shells with the mixture. Top with the walnuts or almonds.","Bake another 10-15 minutes, until the mixture is warm to the touch.","Sprinkle the shredded coconut over the top once they're out of the oven.","Opal's tip: If you can find Jamaican sweet potatoes, use them — they're creamier, sweeter and absolutely divine!"]
   },
   {
     name:"Coconut Chia Breakfast Pudding",tag:"Caribbean Twist",time:"10 mins + chilling",servings:2,
-    desc:"Creamy, dreamy and packed with healing goodness — this one feels like a treat but works like medicine.",
-    ingredients:["1 cup homemade coconut milk","4 tablespoons chia seeds","2 tablespoons grated coconut","1 teaspoon pure non-alcoholic vanilla extract","1 tablespoon raw honey or maple syrup (optional)","Fresh ripe mango, diced","Handful of mixed nuts (cashews, walnuts, pistachios)"],
+    desc:"Creamy, dreamy and packed with healing goodness — this one feels like a treat but is a creamy, nourishing breakfast.",
+    ingredients:["1 cup coconut milk","2 tbsp grated coconut","4 tbsp chia seeds","1 tsp pure vanilla extract","Pinch of grated nutmeg","Optional: 1 tbsp raw honey or maple syrup","Toppings (optional): almond butter, fresh mint, toasted coconut flakes, lime zest, bee pollen, chopped nuts, edible flowers"],
     equipment:["Mixing bowl","Container with lid (for chilling)"],
-    steps:["Mix coconut milk, vanilla and honey or maple syrup until smooth.","Stir in chia seeds and grated coconut.","Cover and refrigerate for at least 30 minutes or overnight until thick and creamy.","When ready to eat, top with fresh mango and your choice of nuts.","Opal's tip: Homemade coconut milk makes this pudding extra rich and creamy. Have a bowl of fruits 30 minutes before eating for best digestion. Fresh ripe mango on top takes this to another level — pure Caribbean healing!"]
+    steps:["Whisk the coconut milk, vanilla, and sweetener (if using) until smooth.","Stir in the chia seeds and grated coconut.","Cover and refrigerate. As the liquid thickens, add a pinch of grated nutmeg.","Once the chia seeds have absorbed the liquid, top as you like and enjoy.","Opal's tip: Homemade coconut milk makes this pudding extra rich and creamy. Toasted coconut flakes and lime zest on top take this to another level — pure Caribbean healing!"]
   },
   {
     name:"Opal's Jamaican Healing Lentil Soup",tag:"Caribbean Soul",time:"40 mins",servings:4,
@@ -629,6 +646,20 @@ const RECIPES = [
     ingredients:["1½ cups rolled oats (toasted the day before at 200°C)","½ cup desiccated or unsweetened coconut flakes","½ cup slivered raw almonds (crushed almonds work too)","½ cup raw pecan halves or walnuts","1 tbsp coconut sugar","¼ tsp Himalayan or Celtic salt","3 tsp coconut oil","⅓ cup maple syrup","1 tsp pure vanilla extract","¼ cup dried fruit of your choice"],
     equipment:["Toaster oven or regular oven","Small stainless steel saucepan","Large mixing bowl","Baking sheet with parchment paper"],
     steps:["Preheat oven to 325°F (162°C).","Add oats, coconut, almonds, pecans or walnuts, coconut sugar and salt to a large mixing bowl and stir to combine.","In a small saucepan, combine coconut oil, maple syrup and vanilla extract. Warm over medium heat for 2–3 minutes, whisking until fully combined.","Pour the warm mixture over the dry ingredients and mix well. Spread evenly onto a parchment-lined baking sheet.","Bake for 20 minutes then remove from oven. Leave as is and break into chunky pieces when cool, or stir for a finer store-bought style granola.","Store in a sealed container or ziplock bag in the refrigerator for up to 2 weeks.","Opal's tip: I use a toaster oven — the smaller size means more concentrated heat and perfectly golden granola every time. A regular oven works just as well though! Serve with homemade almond milk for a truly healing breakfast."]
+  },
+  {
+    name:"Pumpkin Millet Porridge",tag:"Breakfast",time:"Overnight soak + 25 mins",
+    desc:"A warm, creamy bowl of millet simmered with pumpkin, cinnamon and coconut milk.",
+    ingredients:["1 cup dry millet","2 tbsp coconut sugar (for soaking)","Fresh water for cooking","Pinch of sea salt","1 Ceylon cinnamon stick","1 tsp vanilla extract","1 cup pumpkin, diced","1 tsp ground coriander","1 cup coconut milk, divided","Raw honey or maple syrup, to taste","Optional: raw cashews, pumpkin seeds, or sunflower seeds"],
+    equipment:["Medium stainless steel pot","Fork or potato masher"],
+    steps:["Soak the millet overnight in water with the coconut sugar.","When you're ready to cook, pour off the soaking water and add fresh water. Bring to a boil with the salt, cinnamon stick, vanilla, and diced pumpkin.","Reduce to a simmer, cover, and cook for 15 minutes, stirring now and then.","Stir in ½ cup of the coconut milk. Take the pumpkin out and mash it with a fork or potato masher.","Return the mashed pumpkin to the pot along with the coriander, then add the rest of the coconut milk. Simmer another 10 minutes.","Sweeten with honey or maple syrup to taste, and top with cashews or seeds if you like."]
+  },
+  {
+    name:"Sweet Quinoa Balls",tag:"Breakfast",time:"20–30 mins chilling (optional)",
+    desc:"No-bake bites of quinoa, seeds, coconut and dried fruit, rolled by hand.",
+    ingredients:["1 cup cooked quinoa","¼ cup ground flaxseed","¼ cup ground sesame seeds","¼ cup pumpkin seeds","¼ cup shredded coconut","Pinch of sea salt","2 tbsp honey","¼ cup chopped raisins <strong>or</strong> ¼ cup dates"],
+    equipment:["Food processor","Parchment paper","Plastic container with lid (for storing)"],
+    steps:["Add everything to a food processor and pulse until smooth.","Pour the mixture onto a flat surface lined with parchment paper.","Roll the mixture into balls and enjoy them right away, or chill for 20-30 minutes to firm them up.","Store any leftover balls in a closed plastic container lined with parchment paper in the fridge. They keep for up to a week."]
   },
   // <generated:lunch-recipes> built by scripts/build-kitchen-content.js from content/*.md; edit those, not this block
   {

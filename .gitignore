@@ -1,3 +1,5 @@
 # Private reference, never commit or deploy
 content/health-claims-source-log.md
 .DS_Store
+# Restorable copy of the removed Talk Support profile; local only (public repo)
+archive/
