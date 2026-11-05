@@ -394,58 +394,7 @@ body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);
     <div><div class="top-bar-title">Recovery Kitchen</div><div class="top-bar-sub">Nourish your healing body</div></div>
   </div>
   <div id="kitchen-list">
-    <div class="recipe-grid">
-      <div class="recipe-card" onclick="openRecipe(0)">
-        <div class="recipe-tag">Anti-Inflammatory</div>
-        <div class="recipe-name">Golden Turmeric Healing Soup</div>
-        <div class="recipe-desc">A warm, nourishing broth with powerful anti-inflammatory spices to support your body during treatment</div>
-        <div class="recipe-meta">
-          <span class="recipe-meta-item">⏱ 30 mins</span>
-          <span class="recipe-meta-item">🍽 4 servings</span>
-          <span class="recipe-meta-item">💚 Vegan</span>
-        </div>
-      </div>
-      <div class="recipe-card" onclick="openRecipe(1)">
-        <div class="recipe-tag">Immune Boost</div>
-        <div class="recipe-name">Purple Reign Berry Smoothie Bowl</div>
-        <div class="recipe-desc">Antioxidant-rich purple berries packed with nutrients to strengthen your immune system</div>
-        <div class="recipe-meta">
-          <span class="recipe-meta-item">⏱ 10 mins</span>
-          <span class="recipe-meta-item">🍽 1 serving</span>
-          <span class="recipe-meta-item">🌱 Raw</span>
-        </div>
-      </div>
-      <div class="recipe-card" onclick="openRecipe(2)">
-        <div class="recipe-tag">Energy</div>
-        <div class="recipe-name">Opal's Ginger Lemon Wellness Tea</div>
-        <div class="recipe-desc">A comforting, soothing tea to ease nausea, boost energy, and warm your spirit on difficult days</div>
-        <div class="recipe-meta">
-          <span class="recipe-meta-item">⏱ 10 mins</span>
-          <span class="recipe-meta-item">🍽 2 cups</span>
-          <span class="recipe-meta-item">💛 Soothing</span>
-        </div>
-      </div>
-      <div class="recipe-card" onclick="openRecipe(3)">
-        <div class="recipe-tag">Protein Rich</div>
-        <div class="recipe-name">Healing Lentil & Greens Bowl</div>
-        <div class="recipe-desc">Plant-based protein with iron-rich greens to help rebuild strength and support recovery</div>
-        <div class="recipe-meta">
-          <span class="recipe-meta-item">⏱ 40 mins</span>
-          <span class="recipe-meta-item">🍽 3 servings</span>
-          <span class="recipe-meta-item">💪 High Protein</span>
-        </div>
-      </div>
-      <div class="recipe-card" onclick="openRecipe(4)">
-        <div class="recipe-tag">Gut Health</div>
-        <div class="recipe-name">Probiotic Overnight Oats</div>
-        <div class="recipe-desc">Gut-nourishing overnight oats with yogurt and seeds to support digestion and balance during treatment</div>
-        <div class="recipe-meta">
-          <span class="recipe-meta-item">⏱ 5 mins</span>
-          <span class="recipe-meta-item">🍽 1 serving</span>
-          <span class="recipe-meta-item">🌙 Overnight</span>
-        </div>
-      </div>
-    </div>
+    <div class="recipe-grid" id="recipe-grid"></div>
   </div>
   <div id="kitchen-detail" style="display:none"></div>
 </div>
@@ -820,6 +769,7 @@ function initApp() {
   renderSisterhood();
   renderMilestones();
   renderStreakRow();
+  renderKitchen();
   document.getElementById("journal-prompt").textContent = PROMPTS[Math.floor(Math.random()*PROMPTS.length)];
 }
 function updateHome() {
@@ -930,6 +880,20 @@ function renderMoodHistory() {
 }
 
 // ── RECIPES ───────────────────────────────────────
+function renderKitchen() {
+  const grid = document.getElementById("recipe-grid");
+  grid.innerHTML = RECIPES.map((r, i) => `
+    <div class="recipe-card" onclick="openRecipe(${i})">
+      <div class="recipe-tag">${r.tag}</div>
+      <div class="recipe-name">${r.name}</div>
+      <div class="recipe-desc">${r.desc}</div>
+      <div class="recipe-meta">
+        <span class="recipe-meta-item">⏱ ${r.time}</span>
+        <span class="recipe-meta-item">🍽 ${r.servings} ${r.servings === 1 ? "serving" : "servings"}</span>
+      </div>
+    </div>`).join("");
+}
+
 function openRecipe(idx) {
   const r = RECIPES[idx];
   document.getElementById("kitchen-list").style.display = "none";
