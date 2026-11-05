@@ -78,6 +78,14 @@ body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);
 .crisis-btn{display:block;text-align:center;padding:12px;border-radius:30px;border:1px solid rgba(231,76,60,0.4);color:var(--text-lt);font-size:13px;font-weight:500;text-decoration:none;transition:background 0.2s}
 .crisis-btn:hover{background:rgba(231,76,60,0.15)}
 .crisis-text{font-size:13px;color:var(--text-mid);line-height:1.6;text-align:center;margin-top:2px}
+/* ── PEER SUPPORT ── */
+.peer-section{padding:16px 20px 0}
+.peer-card{background:linear-gradient(135deg,rgba(74,44,110,0.2),rgba(17,9,32,0.8));border:1px solid rgba(122,61,184,0.3);border-radius:var(--radius);padding:22px;margin-bottom:16px}
+.peer-text{font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:20px}
+.peer-book-btn{display:block;background:linear-gradient(135deg,var(--pr-mid),var(--pr-light));color:white;border-radius:30px;padding:17px;font-family:'Jost',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-align:center;text-decoration:none;margin-bottom:10px}
+.peer-book-btn:hover{opacity:0.9}
+.peer-note{font-size:12px;color:var(--text-muted);text-align:center;line-height:1.5}
+.peer-disclaimer{font-size:13px;color:var(--text-mid);line-height:1.6;padding:0 4px}
 .feat-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius);padding:18px 16px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden}
 .feat-card:hover{border-color:rgba(201,168,76,0.3);background:rgba(201,168,76,0.04)}
 .feat-card-icon{font-size:28px;margin-bottom:10px;display:block}
@@ -345,6 +353,11 @@ body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);
       <div class="feat-card-name">Progress Path</div>
       <div class="feat-card-desc">Celebrate your milestones</div>
     </div>
+    <div class="feat-card" onclick="showScreen('peer')">
+      <span class="feat-card-icon">🤝</span>
+      <div class="feat-card-name">Peer Support</div>
+      <div class="feat-card-desc">Talk one-on-one with a peer</div>
+    </div>
   </div>
   <div class="crisis-card">
     <div class="crisis-title">🆘 In Crisis?</div>
@@ -475,6 +488,33 @@ body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);
 </div>
 
 <!-- ══════════════════════════════════════════════ -->
+<!-- PEER SUPPORT                                   -->
+<!-- ══════════════════════════════════════════════ -->
+<div id="screen-peer" class="screen">
+  <div class="top-bar">
+    <div><div class="top-bar-title">Peer Support</div></div>
+  </div>
+  <div class="peer-section">
+    <div class="peer-card">
+      <div class="peer-text">I'm not a counselor or a coach. I'm a peer. I know what it's like to walk through hard seasons, and I'm here to listen, one-on-one. Sometimes it helps to say it out loud to someone who understands.</div>
+      <a class="peer-book-btn" href="https://tidycal.com/omkclientflow/quickconnectwithopal" target="_blank">Book a time to talk</a>
+      <div class="peer-note">Conversations are free. Pick a time that works for you.</div>
+    </div>
+    <div class="peer-disclaimer">This is peer support, not professional care. If you're in crisis or thinking about hurting yourself, call or text 988 right now.</div>
+  </div>
+  <div class="crisis-card">
+    <div class="crisis-title">🆘 In Crisis?</div>
+    <div class="crisis-actions">
+      <a class="crisis-btn" href="tel:988">📞 Call 988</a>
+      <a class="crisis-btn" href="sms:988">💬 Text 988</a>
+    </div>
+    <a class="crisis-btn" href="sms:741741?&body=CONNECT">💬 Text CONNECT to 741741</a>
+    <a class="crisis-btn" href="tel:18006686868">📞 Kids Help Phone · 1-800-668-6868</a>
+    <div class="crisis-text">For emergencies, call 911.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
 <!-- BOTTOM NAV                                     -->
 <!-- ══════════════════════════════════════════════ -->
 <nav class="bottom-nav" id="bottom-nav" style="display:none">
@@ -489,6 +529,9 @@ body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);
   </div>
   <div class="nav-item" onclick="showScreen('journal')" id="nav-journal">
     <div class="nav-icon">📖</div><span>Journal</span>
+  </div>
+  <div class="nav-item" onclick="showScreen('peer')" id="nav-peer">
+    <div class="nav-icon">🤝</div><span>Peer Support</span>
   </div>
   <div class="nav-item" onclick="showScreen('about')" id="nav-about">
     <div class="nav-icon">👑</div><span>About</span>
