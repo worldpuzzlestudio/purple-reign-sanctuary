@@ -135,6 +135,22 @@ body{font-family:'Jost',sans-serif;background:var(--night);color:var(--text-lt);
 .step-num{width:28px;height:28px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold);font-weight:600;flex-shrink:0;margin-top:2px}
 .step-text{font-size:14px;color:var(--text-mid);line-height:1.7;flex:1}
 .back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-size:13px;cursor:pointer;margin-bottom:16px;font-weight:500;padding:8px 0}
+.kitchen-tabs{display:flex;gap:8px;margin-bottom:4px}
+.kitchen-tab{flex:1;text-align:center;padding:10px;border-radius:30px;border:1px solid rgba(201,168,76,0.3);color:var(--text-mid);font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all 0.2s}
+.kitchen-tab.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold-lt)}
+.kitchen-group-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-top:8px}
+.step-prose{margin-bottom:12px}
+.guide-body{font-size:14px;color:var(--text-mid);line-height:1.7}
+.guide-body p{margin-bottom:14px}
+.guide-body h2{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--gold-lt);font-weight:400;margin:24px 0 10px}
+.guide-body h3{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin:20px 0 10px}
+.guide-body strong{color:var(--text-lt);font-weight:500}
+.guide-body ul,.guide-body ol{margin:0 0 14px;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.guide-body ul{list-style:none;padding-left:0}
+.guide-body ul li{position:relative;padding-left:16px}
+.guide-body ul li::before{content:"✦";color:var(--gold);font-size:8px;position:absolute;left:0;top:1px}
+.guide-body ol li::marker{color:var(--gold)}
+.guide-body hr{border:none;border-top:1px solid rgba(255,255,255,0.08);margin:20px 0}
 
 /* ── JOURNAL ── */
 #screen-journal{background:var(--night)}
@@ -613,7 +629,138 @@ const RECIPES = [
     ingredients:["1½ cups rolled oats (toasted the day before at 200°C)","½ cup desiccated or unsweetened coconut flakes","½ cup slivered raw almonds (crushed almonds work too)","½ cup raw pecan halves or walnuts","1 tbsp coconut sugar","¼ tsp Himalayan or Celtic salt","3 tsp coconut oil","⅓ cup maple syrup","1 tsp pure vanilla extract","¼ cup dried fruit of your choice"],
     equipment:["Toaster oven or regular oven","Small stainless steel saucepan","Large mixing bowl","Baking sheet with parchment paper"],
     steps:["Preheat oven to 325°F (162°C).","Add oats, coconut, almonds, pecans or walnuts, coconut sugar and salt to a large mixing bowl and stir to combine.","In a small saucepan, combine coconut oil, maple syrup and vanilla extract. Warm over medium heat for 2–3 minutes, whisking until fully combined.","Pour the warm mixture over the dry ingredients and mix well. Spread evenly onto a parchment-lined baking sheet.","Bake for 20 minutes then remove from oven. Leave as is and break into chunky pieces when cool, or stir for a finer store-bought style granola.","Store in a sealed container or ziplock bag in the refrigerator for up to 2 weeks.","Opal's tip: I use a toaster oven — the smaller size means more concentrated heat and perfectly golden granola every time. A regular oven works just as well though! Serve with homemade almond milk for a truly healing breakfast."]
-  }
+  },
+  // <generated:lunch-recipes> built by scripts/build-kitchen-content.js from content/*.md; edit those, not this block
+  {
+    name:"Mediterranean Quinoa Salad",tag:"Plant-Based Lunch",
+    desc:"Toss cooled cooked quinoa with diced cucumber, cherry tomatoes, chopped olives, red onion, and parsley.",
+    steps:["Toss cooled cooked quinoa with diced cucumber, cherry tomatoes, chopped olives, red onion, and parsley. Dress with olive oil, lemon juice, minced garlic, salt, and a touch of honey, then serve chilled."]
+  },
+  {
+    name:"Chickpea Avocado Wrap",tag:"Plant-Based Lunch",
+    desc:"Mash avocado with salt, a dash of cayenne, and lime juice, then spread onto a whole-grain wrap.",
+    steps:["Mash avocado with salt, a dash of cayenne, and lime juice, then spread onto a whole-grain wrap. Layer in chickpeas, cucumber, shredded carrot, and spinach, drizzle with tahini or your favorite dressing, roll tightly, and slice."]
+  },
+  {
+    name:"Sweet Potato & Black Bean Bowl",tag:"Plant-Based Lunch",
+    desc:"Roast diced sweet potato with olive oil, cayenne, cumin, and salt at 400°F for 20–25 minutes.",
+    steps:["Roast diced sweet potato with olive oil, cayenne, cumin, and salt at 400°F for 20–25 minutes. Layer with cooked quinoa, black beans, the roasted sweet potato, diced tomato, avocado, and a dollop of salsa or guacamole. Top with cilantro, lime, and vegan cheese if you like."]
+  },
+  {
+    name:"Lentil & Vegetable Soup",tag:"Plant-Based Lunch",
+    desc:"Sauté onion, garlic, and carrot in olive or coconut oil until soft.",
+    steps:["Sauté onion, garlic, and carrot in olive or coconut oil until soft. Add lentils, vegetable broth, diced tomatoes, and any vegetables you have on hand — celery, broccoli, cauliflower, or spinach all work well. Season with thyme, oregano, and a bay leaf, and simmer 25–30 minutes until tender."]
+  },
+  {
+    name:"Quinoa Salad Jars",tag:"Plant-Based Lunch",
+    desc:"Cook 1 cup rinsed quinoa in 2 cups water — bring to a boil, simmer uncovered 15 minutes until the water's absorbed, then let it steam off-heat for 5 minutes.",
+    equipment:["Mason jar"],
+    steps:["Cook 1 cup rinsed quinoa in 2 cups water — bring to a boil, simmer uncovered 15 minutes until the water's absorbed, then let it steam off-heat for 5 minutes. Separately, cook black beans (soaked overnight, then boiled until soft). In a mason jar, layer the quinoa, beans, corn, chopped cucumber, cherry tomatoes, bell pepper, and green onion. Top with a lemon-tahini dressing or your favorite, seal, and refrigerate until you're ready to grab it and go."]
+  },
+  {
+    name:"Sweet Potato Shepherd's Pie",tag:"Plant-Based Lunch",
+    desc:"Boil 3 large sweet potatoes and mash them with 1 cup grated raw pumpkin until creamy (add a splash of water if needed).",
+    equipment:["Baking dish"],
+    steps:["<strong>For the topping:</strong> Boil 3 large sweet potatoes and mash them with 1 cup grated raw pumpkin until creamy (add a splash of water if needed).","<strong>For the filling:</strong> Heat 2 tbsp coconut oil and sauté chopped onion, carrot, celery, and minced garlic briefly. Stir in ½ cup coconut milk and bring to a boil, then add 2 cups cooked lentils along with sage, cumin, bay leaves, oregano, coriander, and salt. Simmer 15 minutes, then stir in 2 tbsp molasses and a dash of cayenne. Simmer another 15 minutes. (A tablespoon of arrowroot powder can thicken the sauce if needed.)","<strong>To assemble:</strong> Grease a baking dish with coconut oil. Layer half the mashed sweet potato/pumpkin on the bottom, add the lentil filling, then top with the remaining raw grated pumpkin and mashed potato. Bake at 350°F for 30 minutes."]
+  },
+  {
+    name:"Simple Hummus",tag:"Plant-Based Lunch",
+    desc:"Blend 2 cups cooked chickpeas, ¼ cup tahini, 2 tbsp lemon juice, 1 tbsp olive or coconut oil, scallion, garlic, cumin, a pinch of cayenne, and basil in a food processor for 2–3 minutes until smooth.",
+    equipment:["Food processor"],
+    steps:["Blend 2 cups cooked chickpeas, ¼ cup tahini, 2 tbsp lemon juice, 1 tbsp olive or coconut oil, scallion, garlic, cumin, a pinch of cayenne, and basil in a food processor for 2–3 minutes until smooth. Serve with raw veggies or whole grain bread."]
+  },
+  {
+    name:"Mason Jar Lentil Soup",tag:"Plant-Based Lunch",
+    desc:"Layer dried lentils, diced onion, minced garlic, chopped carrots, diced tomatoes, and vegetable broth in a mason jar with thyme, oregano, and a bay leaf.",
+    equipment:["Mason jar","Pot","Thermos"],
+    steps:["Layer dried lentils, diced onion, minced garlic, chopped carrots, diced tomatoes, and vegetable broth in a mason jar with thyme, oregano, and a bay leaf. Store in a cool, dry place. When ready to eat, pour into a pot, bring to a boil, and simmer 25 minutes until tender. Keep warm in a thermos for lunch on the go."]
+  },
+  {
+    name:"Rainbow Hummus Veggie Wraps",tag:"Plant-Based Lunch",
+    desc:"Spread hummus on a whole-grain wrap, layer with thinly sliced bell peppers, steamed carrots, cucumber, avocado, and shredded purple cabbage, then add mixed greens.",
+    steps:["Spread hummus on a whole-grain wrap, layer with thinly sliced bell peppers, steamed carrots, cucumber, avocado, and shredded purple cabbage, then add mixed greens. Roll tightly, slice, and pack."]
+  },
+  {
+    name:"Quinoa-Stuffed Bell Peppers",tag:"Plant-Based Lunch",
+    desc:"Mix cooked quinoa with sautéed onion and garlic, diced tomatoes, black beans, corn, and herbs of your choice.",
+    steps:["Mix cooked quinoa with sautéed onion and garlic, diced tomatoes, black beans, corn, and herbs of your choice. Stuff into halved, seeded bell peppers and bake at 375°F for 25–30 minutes until tender. Let cool before packing."]
+  },
+  {
+    name:"Mixed Legume Loaf",tag:"Plant-Based Lunch",
+    desc:"Blend 3 cups cooked lentils or chickpeas with ground flaxseed, onion powder, garlic powder, turmeric, rolled oats, garlic, herbs, and arrowroot flour (dissolved in a little water) for 2 minutes.",
+    equipment:["Loaf dish"],
+    steps:["Blend 3 cups cooked lentils or chickpeas with ground flaxseed, onion powder, garlic powder, turmeric, rolled oats, garlic, herbs, and arrowroot flour (dissolved in a little water) for 2 minutes. Press into a loaf dish and bake 15–20 minutes. Blend tomatoes, onion, cayenne, and salt into a quick sauce, pour over the top, and bake another 10–15 minutes."]
+  },
+  // </generated:lunch-recipes>
+];
+const GUIDES = [
+  // <generated:guides> built by scripts/build-kitchen-content.js from content/*.md; edit those, not this block
+  {
+    id:"healing-pantry-guide",group:"Kitchen Basics",title:"The Healing Pantry: Plant-Based Staples for Recovery",
+    desc:"Food is one of the quiet ways we rebuild — not a cure, but a companion to healing.",
+    html:"<p>Food is one of the quiet ways we rebuild — not a cure, but a companion to healing. Here's how to stock your kitchen with the plant-based basics that support the body, whether you're navigating breast cancer recovery or simply choosing a healthier way to eat.</p><h2>Pantry Staples</h2><p><strong>Whole Grains</strong><br>Your grain shelf is where fiber and steady energy live. Beyond the familiar quinoa, brown rice, and oats, branch out into barley, millet, farro, buckwheat, spelt, sorghum, wild rice, amaranth, teff, bulgur, and kamut. Rotating through these keeps meals interesting and covers a wider range of nutrients than sticking to one or two ever could.</p><p><strong>Legumes</strong><br>Lentils, chickpeas, and black beans are the workhorses of a plant-based kitchen — protein, fiber, and versatility in one. Keep a broader rotation on hand too: red, green, and French lentils; split peas; kidney, navy, pinto, cannellini, black-eyed, adzuki, mung, and lima beans; fava beans. They carry soups, stews, curries, salads, and burgers equally well.</p><p><strong>Nuts &amp; Seeds</strong><br>Almonds, walnuts, chia, and flax are the starting point — add pumpkin seeds, sunflower seeds, sesame seeds, hemp hearts, pecans, pistachios, cashews, hazelnuts, macadamias, Brazil nuts, pine nuts, and tahini for a fuller range of healthy fats, protein, and minerals.</p><p><strong>Herbs &amp; Spices</strong><br>This is where flavor does the heavy lifting so you're not reaching for salt or sugar. Build a rotation of garlic, onion, turmeric, cumin, paprika, ginger, cardamom, coriander, dill, sage, thyme, rosemary, oregano, tarragon, saffron, bay leaves, cilantro, mint, basil, and parsley. A well-spiced pantry makes plant-based eating feel abundant, not restrictive.</p><h2>Keeping the Fridge Ready</h2><ul><li><strong>Fruit:</strong> apples, bananas, berries, citrus, grapes, kiwi, mango, watermelon, soursop</li><li><strong>Vegetables:</strong> leafy greens, cruciferous veggies (broccoli, cauliflower), root vegetables (carrots, beets, potatoes), peppers, tomatoes, cucumber</li><li><strong>Fresh herbs &amp; aromatics:</strong> garlic, onion, scallion, ginger, parsley, cilantro, basil, celery, turmeric, oregano, dill</li><li><strong>Plant-based protein:</strong> tofu, cooked lentils, beans, chickpeas</li><li><strong>Dairy alternatives:</strong> almond milk, soy milk, coconut milk, nut-based cheese and butter</li><li><strong>Nuts &amp; seeds:</strong> almonds, walnuts, cashews, chia, flax, hemp seeds</li></ul><p><em>Start with what's familiar, then add one new item a week. A pantry doesn't need to be perfect to support healing — it just needs to be full of real food.</em></p>"
+  },
+  {
+    id:"healing-cookware-guide",group:"Kitchen Basics",title:"Choosing Cookware That Supports a Healing Kitchen",
+    desc:"The pots and pans you cook in matter almost as much as what goes into them.",
+    html:"<p>The pots and pans you cook in matter almost as much as what goes into them. Here's a look at common cookware materials, plus what to weigh before you buy.</p><h2>Cookware Materials at a Glance</h2><p><strong>Stainless Steel</strong><br>A kitchen staple for a reason — it resists scratching and corrosion, and its inert surface means it generally won't react with acidic foods (tomatoes, citrus, vinegar-based dishes) or leach into your meals. Look for 18/8 or 18/10 grade for the most reliable quality.</p><p><strong>Cast Iron</strong><br>Naturally non-stick once seasoned, and durable enough to move from stovetop to oven. Research on iron cookware and iron deficiency (including a 2019 systematic review in <em>PLOS ONE</em>) suggests it <em>may</em> modestly increase the iron content of food, especially acidic dishes cooked longer — but the evidence is mixed, not settled, so treat it as a possible bonus rather than a guaranteed iron boost. If you're managing iron levels specifically, that's a conversation for your healthcare provider.</p><p><strong>Enamel-Coated Cast Iron</strong><br>Combines cast iron's heat retention with a coated surface that doesn't require seasoning and won't react with acidic ingredients. A solid middle ground if you want cast-iron performance without the upkeep.</p><p><strong>Ceramic (100% Pure)</strong><br>Made from natural materials with no metal or synthetic coating, so there's minimal concern about leaching. It heats evenly but is breakable and tends to cost more. If you go this route, confirm any glaze is explicitly labeled lead-free and cadmium-free.</p><p><strong>Glass</strong><br>Completely non-reactive and lets you watch food cook without lifting a lid. Reliable for standard baking temperatures, but avoid sudden temperature swings (freezer to oven, or hot glass into cold water) — that's what causes cracking, not the cooking heat itself.</p><p><strong>Titanium</strong><br>Light and durable, often sold with a non-stick surface. Titanium alloys are commonly used in medical devices, which speaks to general biocompatibility, though that's not the same as a direct safety study on cookware — the coating and manufacturing matter more than the base metal.</p><p><strong>Carbon Steel</strong><br>Heats fast and, like cast iron, builds a natural non-stick layer through seasoning over time. A favorite for high-heat cooking that needs quick, even temperature control.</p><p><strong>Silicone Bakeware</strong><br>Naturally non-stick and flexible, making it easy on baked goods and easy to clean. Choose food-grade silicone from a reputable brand — quality varies more than with rigid cookware.</p><h2>What to Actually Weigh When Choosing</h2><p>Most people start with the visible stuff — how it looks, the size, the weight, how long it'll last, how easy it is to clean, and the price. All reasonable. But for a healing-focused kitchen, run it through two extra filters before you buy:</p><ul><li><strong>What is it actually made of?</strong> Some materials and coatings can carry toxic elements — knowing what's in your cookware matters as much as what you cook in it.</li><li><strong>Is there a coating or glaze, and is it something you'd want touching your food at high heat?</strong> Non-stick coatings and glazes vary widely in quality and safety, so this is worth checking per-product rather than assuming.</li></ul>"
+  },
+  {
+    id:"cooking-methods-guide",group:"Kitchen Basics",title:"Cooking Methods for Plant-Based Meals",
+    desc:"Different techniques bring out different flavors and textures — here's a quick guide to the essentials.",
+    html:"<p>Different techniques bring out different flavors and textures — here's a quick guide to the essentials.</p><h2>Sautéing</h2><p>Quick cooking in a small amount of oil over medium-high heat, great for developing flavor and light caramelization on vegetables.</p><ul><li>Heat a skillet, add a small amount of oil (extra virgin olive oil and cold-pressed coconut oil are great options)</li><li>Add sliced vegetables in a single layer</li><li>Stir frequently, cook 3–5 minutes until tender</li><li>Finish with fresh herbs and salt to taste</li></ul><h2>Roasting</h2><p>Brings out natural sweetness in vegetables (and even fruit) through dry oven heat.</p><ul><li>Preheat oven to 400°F (200°C)</li><li>Cut vegetables into even pieces, toss with oil, spread on a lined baking sheet in a single layer</li><li>Roast 20–30 minutes, flipping halfway, until golden and tender</li><li>Finish with herbs and salt</li></ul><h2>Steaming</h2><p>A gentle method that preserves nutrients, color, and natural flavor — ideal for delicate vegetables.</p><ul><li>Bring an inch of water to a boil in a pot</li><li>Set a steamer basket above the water (not touching it)</li><li>Add vegetables, cover, and steam 5–7 minutes until tender-crisp</li><li>Finish with herbs and salt</li></ul><h2>Baking</h2><p>Dry oven heat, perfect for casseroles, bread, muffins, and veggie-based mains.</p><ul><li>Preheat oven to 300–375°F (150–190°C)</li><li>Layer ingredients (like cubed tofu and vegetables) in a baking dish</li><li>Drizzle with oil, season with herbs and salt</li><li>Cover and bake 25–30 minutes until tender and golden</li></ul><h2>Stir-Frying</h2><p>Fast, high-heat cooking that keeps vegetables crisp and nutrient-rich — traditionally done in a wok.</p><ul><li>Heat oil in a hot pan or wok</li><li>Add garlic and ginger briefly until fragrant</li><li>Cook protein (like tofu) undisturbed until golden, then flip</li><li>Push aside, add vegetables, and stir-fry until crisp-tender</li><li>Toss with your favorite sauce and serve over rice or noodles</li></ul><h2>Boiling</h2><p>Simple and reliable for grains, pasta, legumes, and vegetables.</p><ul><li>Bring a full pot of water to a rolling boil</li><li>Add ingredients, ensuring they're fully submerged</li><li>Cook until tender, checking periodically to avoid overcooking</li><li>Drain and serve hot or cold</li></ul><p><strong>A note on ingredients:</strong> any neutral or flavorful cooking oil works well across these methods — extra virgin olive oil and coconut oil are popular whole-food choices, but there's no need to feel locked into one type. Good unrefined options include avocado oil (light sautéing), and flax, walnut, or hemp oil (best drizzled cold over finished dishes — heat breaks down their delicate fats). Unrefined oils are actually the <em>least</em> processed choice — just pressed, nothing added or stripped — though that also means a lower smoke point, so save them for gentler cooking rather than high-heat frying. The same \"keep it simple\" approach goes for salt — sea salt, Himalayan, or regular table salt all work fine; specialty salts mainly offer subtle flavor differences.</p>"
+  },
+  {
+    id:"salt-guide",group:"Kitchen Basics",title:"Salt: What Actually Matters",
+    desc:"Sodium is essential — your body needs it for nerve function, fluid balance, and muscle contraction.",
+    html:"<p>Sodium is essential — your body needs it for nerve function, fluid balance, and muscle contraction. The real issue isn't salt itself, it's how much of it most people consume, largely from processed and packaged foods rather than the salt shaker.</p><h2>Why Moderation Matters</h2><p>Consistently high sodium intake is linked to higher blood pressure, fluid retention, and increased cardiovascular risk over time — which is why health organizations like the WHO and American Heart Association recommend keeping daily intake around 2,300 mg or less. The biggest culprit is usually hidden sodium in processed and packaged foods, not what you add at the table.</p><h2>Table Salt vs. Other Salts</h2><p><strong>Table salt</strong> is refined to remove impurities and typically includes iodine — an essential nutrient for thyroid health that's genuinely hard to get enough of otherwise.</p><p><strong>Himalayan pink salt and Celtic sea salt</strong> are less processed and contain trace minerals (calcium, magnesium, potassium, and others) that give them their color and flavor. These are real, but the amounts are small enough that they don't meaningfully change your nutrition — think of the appeal as flavor and minimal processing, not a mineral supplement. One practical note: these salts usually don't contain iodine, so if you use them as your primary salt, make sure you're getting iodine elsewhere.</p><h2>Getting Enough Iodine</h2><p>If you're not using iodized table salt regularly, seaweed is an excellent natural source — kelp, wakame, nori, and dulse are all iodine-rich and easy to add to soups, salads, or as seasoning.</p><h2>Flavor Without the Extra Sodium</h2><ul><li><strong>Herbs and spices</strong> — basil, thyme, oregano, cumin, turmeric, and paprika add real depth without any sodium, plus some offer antioxidant benefits of their own</li><li><strong>Citrus</strong> — a squeeze of lemon or lime brightens a dish the way salt often does</li><li><strong>Aromatics</strong> — fresh or powdered garlic and onion add richness without leaning on salt</li><li><strong>Salt-free seasoning blends</strong> — a simple way to season generously without the sodium</li></ul><p><em>As always, if you have specific health conditions affecting sodium needs, it's worth checking with your doctor or dietitian for personalized guidance.</em></p>"
+  },
+  {
+    id:"fruit-timing-guide",group:"Ingredients",title:"Fruit: A Sweet, Simple Part of Healing",
+    desc:"You may have heard that fruit has to be eaten alone or on an empty stomach or it won't \"count.\" That's a myth — your body digests fruit just fine alongside other food.",
+    html:"<p>You may have heard that fruit has to be eaten alone or on an empty stomach or it won't \"count.\" That's a myth — your body digests fruit just fine alongside other food. The truth is simpler: fruit is good for you any time of day.</p><p>If you want one small tip, mornings have a slight edge for keeping blood sugar steady, and pairing fruit with a little protein or a handful of nuts helps even more. But there's no wrong time to reach for fruit — the goal is just enjoying a variety of it regularly.</p><h2>A Few Fruits Worth Knowing</h2><p><strong>Watermelon</strong> — About 92% water, making it one of the most hydrating fruits available, plus a good source of lycopene, an antioxidant linked to heart and skin health.</p><p><strong>Papaya</strong> — Low in calories and rich in fiber and vitamins A, C, and E. Contains digestive enzymes (papain and chymopapain) that support healthy digestion.</p><p><strong>Pineapple</strong> — High in vitamin C and manganese, both important for immune function and bone health.</p><p><strong>Apple</strong> — Contains pectin, a fiber that supports digestion and helps with feeling full, plus antioxidants like quercetin.</p><p><strong>Kiwi</strong> — Small but nutrient-dense, offering vitamin C and actinidin, an enzyme that can aid protein digestion.</p><p><strong>Banana</strong> — A strong source of potassium, which supports heart and muscle function, along with quick-digesting natural carbohydrates.</p><p><strong>Pear</strong> — Provides vitamin C, vitamin K, potassium, and copper, along with fiber that supports fullness and digestion.</p>"
+  },
+  {
+    id:"fruit-pairings-guide",group:"Ingredients",title:"Fun Fruit Pairings",
+    desc:"Mixing fruits isn't just about taste — the right combos make snacks and smoothies more satisfying and interesting.",
+    html:"<p>Mixing fruits isn't just about taste — the right combos make snacks and smoothies more satisfying and interesting. A few easy pairings to try:</p><ul><li><strong>Berries + apples</strong> — classic, cozy combo, great in a crumble or oatmeal topping</li><li><strong>Kiwi + pineapple</strong> — bright, tangy duo for smoothies</li><li><strong>Mango + lime</strong> — sweet and citrusy, perfect for a quick chutney or salsa</li><li><strong>Berries + banana</strong> — smooth and naturally sweet, a smoothie favorite</li><li><strong>Pears + grapes</strong> — light and refreshing in a fruit salad</li><li><strong>Banana + papaya</strong> — soft, tropical, and satisfying</li></ul><p><strong>A couple of tips:</strong></p><ul><li><strong>Mix textures</strong> — pair something soft (berries, banana) with something crisp (apple) for more interest in each bite.</li><li><strong>Go seasonal</strong> — fruit tastes best (and costs less) in season, so let what's fresh guide your combos.</li></ul><p>There's no wrong way to combine fruit — this is just inspiration. Trust your taste buds.</p>"
+  },
+  {
+    id:"ezekiel-bread-benefits",group:"Ingredients",title:"A Recipe as Old as Scripture",
+    desc:"Long before \"whole grain\" was a nutrition buzzword, Ezekiel 4:9 described a bread made from a mix of wheat, barley, beans, lentils, millet, and spelt — grains and legumes combined into one loaf.",
+    html:"<p>Long before \"whole grain\" was a nutrition buzzword, Ezekiel 4:9 described a bread made from a mix of wheat, barley, beans, lentils, millet, and spelt — grains and legumes combined into one loaf. It's a beautiful picture of what modern nutrition has only caught up to: whole grains and legumes together are one of the most nourishing combinations you can eat.</p><h2>Why This Combination Works</h2><p><strong>Complete nourishment.</strong> Grains and beans complement each other's amino acids, so together they offer a fuller protein profile than either provides alone — a principle whole-food, plant-based eating has leaned on for generations, long before \"complete protein\" was a term.</p><p><strong>Steady energy.</strong> The fiber in both beans and whole grains slows digestion, helping you avoid the energy crashes that come with refined, low-fiber foods.</p><p><strong>Gut support.</strong> Beans and whole grains are some of the richest everyday sources of fiber, which feeds the good bacteria in your gut — a foundation for digestion and immunity alike.</p><p><strong>Heart health.</strong> Replacing refined grains with whole grains, and adding beans regularly, is consistently linked to healthier cholesterol levels and reduced heart disease risk.</p><p><em>Whether you bake your own version of Ezekiel bread or simply add more beans and whole grains to your week, you're following a pattern of nourishment that's stood the test of thousands of years.</em></p>"
+  },
+  {
+    id:"whole-grains-guide",group:"Ingredients",title:"The Power of Whole Grains",
+    desc:"Whole grains keep all three parts of the kernel — the bran, germ, and endosperm — instead of being stripped down like refined grains.",
+    html:"<p>Whole grains keep all three parts of the kernel — the bran, germ, and endosperm — instead of being stripped down like refined grains. That's what makes them so nourishing: they're rich in fiber, protein, vitamins, and minerals that help you feel full, support steady digestion, and are linked to lower risk of heart disease and diabetes.</p><h2>A Quick Prep Tip</h2><p>Grains, beans, and nuts naturally contain phytic acid, which can make it a little harder for your body to absorb minerals like iron and calcium. The fix is simple and something cultures have done for generations: <strong>soak your grains, beans, and nuts before cooking</strong> (a few hours to overnight), and cook them well rather than eating them raw. This naturally reduces phytic acid and makes the nutrients more available to your body. Pairing grain-based meals with vitamin-C-rich foods (citrus, bell peppers, broccoli) also helps your body absorb iron better.</p><h2>Whole Grains to Explore</h2><ul><li><strong>Brown rice</strong> — fiber, magnesium, selenium; an easy swap for white rice</li><li><strong>Quinoa</strong> — high in protein and fiber, with iron, magnesium, and zinc; great as a salad or rice/pasta substitute</li><li><strong>Oats</strong> — rich in soluble fiber that supports healthy cholesterol; classic for breakfast or baking</li><li><strong>Barley</strong> — fiber (especially beta-glucan) for cholesterol support; wonderful in soups and stews</li><li><strong>Whole wheat</strong> — fiber, protein, iron, and B vitamins; choose whole wheat bread, pasta, and flour</li><li><strong>Millet</strong> — gluten-free, rich in magnesium and antioxidants; good as a side or in porridge</li><li><strong>Farro</strong> — fiber, protein, magnesium, and zinc; excellent in salads and risottos</li><li><strong>Amaranth</strong> — gluten-free, high protein and fiber; great as porridge or in baking</li><li><strong>Teff</strong> — gluten-free, rich in calcium, iron, and magnesium; wonderful in pancakes and flatbreads</li><li><strong>Buckwheat</strong> — gluten-free, rich in protein and antioxidants; classic for pancakes and noodles</li></ul><h2>Easy Ways to Add Them In</h2><ul><li>Swap refined grains for whole grain versions in bread, pasta, and tortillas</li><li>Build hearty grain salads with vegetables, herbs, and beans or tofu</li><li>Start the day with oatmeal, whole grain toast, or a quinoa breakfast bowl</li><li>Stir grains like barley or brown rice into soups and stews for texture and staying power</li><li>Use whole grain wraps, pizza dough, or breadcrumbs in place of refined versions</li></ul>"
+  },
+  {
+    id:"beans-and-peas-guide",group:"Ingredients",title:"Beans and Peas: Small but Mighty",
+    desc:"Legumes have fed people well for thousands of years, and for good reason — beans and peas are some of the most protein- and fiber-rich foods in the plant world, plus a great source of folate, iron, magnesium, potassium, and B vitamins.",
+    html:"<p>Legumes have fed people well for thousands of years, and for good reason — beans and peas are some of the most protein- and fiber-rich foods in the plant world, plus a great source of folate, iron, magnesium, potassium, and B vitamins. They're a staple for anyone eating plant-based, and easy to build a meal around.</p><h2>A Few Favorites to Know</h2><ul><li><strong>Green peas</strong> — sweet and tender, great raw or cooked in soups, salads, and stir-fries</li><li><strong>Split peas</strong> — dried and halved, perfect for hearty soups, stews, and dal</li><li><strong>Snow peas</strong> — crisp, edible pods with sweet peas inside; a stir-fry and salad favorite</li><li><strong>Black beans</strong> — dense and earthy, wonderful in soups, stews, and rice bowls</li><li><strong>Kidney beans</strong> — creamy with a hint of sweetness, classic in chili, salads, and dips</li><li><strong>Chickpeas</strong> — firm and nutty, the base of hummus, falafel, and curries</li></ul><h2>A Quick Prep Tip</h2><p>Like grains, beans and peas contain phytic acid, which can make it a bit harder for the body to absorb minerals. Soaking is the easy fix:</p><ol><li>Rinse beans or peas well.</li><li>Cover with plenty of water — a splash of lemon juice helps too.</li><li>Soak overnight (12–24 hours is ideal).</li><li>Drain, rinse again, and cook as usual.</li></ol><p>Sprouting takes it a step further (rinse and drain twice a day for a few days until they sprout) and boosts nutrition even more, but soaking alone makes a real difference. Cooking beans and peas thoroughly — simmering or pressure cooking — also helps.</p><p><strong>Two more easy wins:</strong></p><ul><li>Pair beans with vitamin-C-rich foods like tomatoes, peppers, or broccoli to help your body absorb their nutrients better.</li><li>New to eating a lot of beans? Start with smaller portions and build up gradually — your digestion adjusts over time.</li></ul>"
+  },
+  {
+    id:"nuts-and-seeds-guide",group:"Ingredients",title:"Nuts and Seeds: Small Packages, Big Nourishment",
+    desc:"In Exodus 16, God fed the Israelites in the wilderness for forty years with manna — a seed-like bread that appeared each morning, described as resembling coriander seed.",
+    html:"<p>In Exodus 16, God fed the Israelites in the wilderness for forty years with manna — a seed-like bread that appeared each morning, described as resembling coriander seed. It's a reminder that some of the most sustaining foods come in the smallest packages — a fitting way to think about nuts and seeds today.</p><h2>Seeds Worth Adding to Your Day</h2><ul><li><strong>Flaxseed</strong> — rich in omega-3s, fiber, and lignans; best ground and added to smoothies, oatmeal, or baked goods</li><li><strong>Sesame seeds</strong> — excellent source of calcium and iron; toast and sprinkle on veggies, or enjoy as tahini</li><li><strong>Chia seeds</strong> — high in fiber, omega-3s, and antioxidants; perfect for chia pudding or stirred into yogurt</li><li><strong>Sunflower seeds</strong> — good source of vitamin E and selenium; great on salads or blended into granola</li><li><strong>Pumpkin seeds</strong> — rich in zinc and magnesium; roast for a crunchy snack or add to trail mix</li><li><strong>Hemp seeds</strong> — a complete protein with anti-inflammatory omega fats; sprinkle on toast, oatmeal, or smoothies</li></ul><h2>Nuts Worth Knowing</h2><ul><li><strong>Almonds</strong> — vitamin E, calcium, and healthy fats; great in salads, smoothies, or as almond butter</li><li><strong>Walnuts</strong> — one of the best plant sources of omega-3s and antioxidants</li><li><strong>Cashews</strong> — creamy monounsaturated fats and protein; ideal for dairy-free sauces and dressings</li><li><strong>Pistachios</strong> — protein, fiber, and potassium in a satisfying snack</li><li><strong>Brazil nuts</strong> — exceptionally high in selenium, important for thyroid health</li><li><strong>Pecans</strong> — rich in antioxidants, especially vitamin E</li><li><strong>Hazelnuts</strong> — vitamin E and folate; wonderful in nut milk or chopped over grain bowls</li><li><strong>Macadamia nuts</strong> — heart-healthy monounsaturated fats; lovely blended into creamy sauces</li><li><strong>Pine nuts</strong> — healthy fats and iron; toast them for salads, pasta, or homemade pesto</li></ul><h2>Easy Ways to Use Them</h2><p>Grinding nuts and seeds is one of the simplest ways to get the most from them — add to smoothies, oatmeal, or baked goods. Beyond that: sprinkle over salads and roasted vegetables, stir into plant-based yogurt, blend into creamy sauces and dressings, or simply enjoy a handful as a satisfying snack.</p>"
+  },
+  {
+    id:"plant-protein-guide",group:"Ingredients",title:"Getting Enough Protein on a Plant-Based Diet",
+    desc:"One of the most common worries about eating plant-based is protein — but it's easier to meet your needs than most people expect.",
+    html:"<p>One of the most common worries about eating plant-based is protein — but it's easier to meet your needs than most people expect. A single cup of cooked lentils delivers about 18 grams of protein, alongside fiber and nutrients that come standard with plant foods and aren't found in animal protein sources.</p><h2>How Much Protein Do You Actually Need?</h2><p>The general daily recommendation is:</p><ul><li><strong>Adult men:</strong> about 56 grams</li><li><strong>Adult women:</strong> about 46 grams</li></ul><p>(Individual needs shift with activity level, muscle mass, and overall health — think of these as a solid baseline.)</p><h2>Protein-Rich Plant Foods</h2><ul><li>Cooked lentils (1 cup): ~18g</li><li>Dry red beans (½ cup): ~21g</li><li>Dry black beans (½ cup): ~24g</li><li>Chia seeds (½ cup): ~18g</li><li>Flaxseeds (½ cup): ~18g</li></ul><h2>Complete vs. Incomplete Proteins</h2><p>Your body needs 9 essential amino acids from food — it can't make them on its own. A \"complete protein\" contains all 9; an \"incomplete protein\" is missing one or more, but combining foods across the day easily fills the gap (rice + beans is the classic example).</p><p><strong>Complete plant protein sources:</strong></p><ul><li>Quinoa — 8g per cup, cooked</li><li>Tofu — 8–10g per 100g</li><li>Tempeh — 18g per 100g</li><li>Buckwheat — 23g per 100g, raw</li><li>Soybeans — 36g per 100g, raw</li><li>Hemp seeds — 11g per 30g</li><li>Chia seeds — 4g per 2 tbsp</li><li>Spirulina — 4g per tbsp</li></ul><p><strong>Incomplete sources (still valuable — just pair with variety):</strong></p><ul><li>Grains — ~5g per 100g cooked</li><li>Nuts and seeds — 6–9g per 30g</li><li>Legumes and beans — 7–9g per 100g</li><li>Vegetables — green peas ~7g/cup; spinach and broccoli ~3–4g/cup</li></ul><p>Don't stress about hitting \"complete\" protein at every single meal — eating a variety of plant proteins across your day covers your amino acid needs just fine.</p><h2>A Sample Day: ~73 Grams of Protein</h2><p><strong>Breakfast — Tofu Scramble (29g)</strong><br>Firm tofu, spinach, bell peppers, and onion, seasoned with turmeric and garlic, served with whole-grain toast and sliced avocado.</p><p><strong>Lunch — Quinoa Salad (22g)</strong><br>Cooked quinoa, chickpeas, cucumber, cherry tomatoes, parsley, and chopped almonds, dressed with olive oil and lemon.</p><p><strong>Dinner — Lentil and Vegetable Stir-Fry (22g)</strong><br>Cooked lentils, mixed vegetables, and brown rice, tossed in a garlic-ginger sauce.</p><h2>Easy Combos for Complete Protein</h2><ul><li>Brown rice and beans</li><li>Sprouted-grain bread (like Ezekiel bread — easier to digest thanks to sprouting, though it still contains gluten from wheat, barley, and spelt)</li><li>A smoothie with spirulina and nuts</li><li>Salads combining beans, nuts, and whole grains</li><li>Soups with beans, vegetables, and whole grains</li><li>Grain bowls layering grains, vegetables, beans or hummus, nuts, and hemp seeds</li></ul>"
+  },
+  {
+    id:"breakfast-guide",group:"Breakfast",title:"Making Breakfast Work For You",
+    desc:"You've probably heard \"breakfast is the most important meal of the day\" your whole life — but the science on that is actually much less settled than the phrase suggests.",
+    html:"<p>You've probably heard \"breakfast is the most important meal of the day\" your whole life — but the science on that is actually much less settled than the phrase suggests. Some studies find breakfast-eaters tend to be healthier; others find no real difference, and a few even find that skipping it doesn't affect weight or energy the way people assume. The honest answer: there's no single rule that fits everyone. What matters more is building whichever meals you do eat around real, satisfying nutrition.</p><p>So if breakfast works for you, here's how to make it count. And if it doesn't — that's okay too.</p><h2>What Makes a Breakfast Actually Satisfying</h2><p>A combination of plant-based protein, fiber-rich carbs, and healthy fats will keep you fuller and steadier than any one of those alone:</p><ul><li><strong>Protein:</strong> beans, lentils, tofu, nuts, seeds</li><li><strong>Carbohydrates:</strong> oats, quinoa, whole wheat, fruit</li><li><strong>Healthy fats:</strong> avocado, nuts, seeds, olive oil</li></ul><p>Adding non-starchy vegetables — spinach, kale, broccoli, bell peppers — rounds things out with extra vitamins and fiber.</p><h2>For Steadier Energy and Blood Sugar</h2><p>Pairing protein, fiber, and healthy fat together (rather than carbs alone) helps smooth out energy levels and avoid the crash-and-crave cycle later in the morning. Whole grains, legumes, and vegetables — lower glycemic-index foods — are especially helpful here.</p><h2>Easy Ideas Worth Trying</h2><ul><li><strong>Overnight oats</strong> — prep the night before for a grab-and-go option</li><li><strong>Smoothie packs</strong> — pre-portion fruit and greens in the freezer for quick blending</li><li><strong>Baked granola or homemade muffins</strong> — batch-make for the week</li><li><strong>Leftovers</strong> — dinner food works just as well in the morning; breakfast doesn't have to look like \"breakfast food\"</li></ul><h2>The Bottom Line</h2><p>Don't feel pressured by the idea that skipping breakfast is a health mistake — that claim is more myth than settled fact. Instead, focus on whether your morning routine (whenever you choose to eat) leaves you feeling energized and satisfied. That's the part that actually matters.</p>"
+  },
+  {
+    id:"plant-based-lunches-guide",group:"Lunch",title:"The Case for a Plant-Based Lunch",
+    desc:"Breakfast gets a lot of attention, but lunch matters just as much — and building it around whole plant foods brings real, well-documented benefits.",
+    html:"<p>Breakfast gets a lot of attention, but lunch matters just as much — and building it around whole plant foods brings real, well-documented benefits.</p><h2>Why It Works</h2><p><strong>Nutrient-dense by nature.</strong> A lunch built around fruits, vegetables, whole grains, legumes, nuts, and seeds delivers a wide range of vitamins, minerals, fiber, and antioxidants that support immunity, digestion, and cellular repair.</p><p><strong>Heart health.</strong> Plant-based meals are naturally lower in saturated fat and sodium than meals centered on animal products, and their fiber content helps support healthy cholesterol and blood pressure — both well-established contributors to cardiovascular health.</p><p><strong>Satisfying, not restrictive.</strong> Because whole plant foods tend to be lower in calorie density, they help you feel full on fewer calories. The combination of fiber, complex carbs, and plant protein supports steady appetite regulation, which can help curb overeating or unhealthy snacking later in the day.</p><p><strong>Digestive support.</strong> Fiber-rich foods promote regular digestion and feed a diverse, healthy gut microbiome — which in turn supports nutrient absorption and immune function.</p><p><strong>Long-term protective effects.</strong> A growing body of research links plant-based eating patterns to lower rates of chronic conditions like type 2 diabetes and certain cancers, largely thanks to the phytochemicals and antioxidants that help the body manage inflammation and oxidative stress. There's also promising, still-developing research suggesting a high-quality plant-based diet may support brain health as we age.</p><h2>Lunch Ideas to Try</h2><p><strong>Mediterranean Quinoa Salad</strong><br>Toss cooled cooked quinoa with diced cucumber, cherry tomatoes, chopped olives, red onion, and parsley. Dress with olive oil, lemon juice, minced garlic, salt, and a touch of honey, then serve chilled.</p><p><strong>Chickpea Avocado Wrap</strong><br>Mash avocado with salt, a dash of cayenne, and lime juice, then spread onto a whole-grain wrap. Layer in chickpeas, cucumber, shredded carrot, and spinach, drizzle with tahini or your favorite dressing, roll tightly, and slice.</p><p><strong>Sweet Potato &amp; Black Bean Bowl</strong><br>Roast diced sweet potato with olive oil, cayenne, cumin, and salt at 400°F for 20–25 minutes. Layer with cooked quinoa, black beans, the roasted sweet potato, diced tomato, avocado, and a dollop of salsa or guacamole. Top with cilantro, lime, and vegan cheese if you like.</p><p><strong>Lentil &amp; Vegetable Soup</strong><br>Sauté onion, garlic, and carrot in olive or coconut oil until soft. Add lentils, vegetable broth, diced tomatoes, and any vegetables you have on hand — celery, broccoli, cauliflower, or spinach all work well. Season with thyme, oregano, and a bay leaf, and simmer 25–30 minutes until tender.</p>"
+  },
+  // </generated:guides>
 ];
 const MILESTONES = [
   "Complete your first mood check-in",
@@ -793,45 +940,97 @@ function renderMoodHistory() {
 }
 
 // ── RECIPES ───────────────────────────────────────
+let kitchenTab = "recipes";
+const GUIDE_GROUPS = ["Kitchen Basics", "Ingredients", "Breakfast", "Lunch"];
+
+// Lunch recipes have no time, servings or ingredients, so only show what's there
+function recipeMeta(r, matchCount) {
+  const items = [];
+  if (r.time) items.push(`⏱ ${r.time}`);
+  if (r.servings) items.push(`🍽 ${r.servings} ${r.servings === 1 && matchCount ? "serving" : "servings"}`);
+  return items;
+}
+
+function setKitchenTab(tab) {
+  kitchenTab = tab;
+  renderKitchen();
+}
+
 function renderKitchen() {
   const grid = document.getElementById("recipe-grid");
-  grid.innerHTML = RECIPES.map((r, i) => `
+  const tabs = `
+    <div class="kitchen-tabs">
+      <div class="kitchen-tab ${kitchenTab === "recipes" ? "active" : ""}" onclick="setKitchenTab('recipes')">Recipes</div>
+      <div class="kitchen-tab ${kitchenTab === "guides" ? "active" : ""}" onclick="setKitchenTab('guides')">Guides</div>
+    </div>`;
+  if (kitchenTab === "guides") {
+    grid.innerHTML = tabs + GUIDE_GROUPS.map(group => `
+      <div class="kitchen-group-label">${group}</div>
+      ${GUIDES.map((g, i) => g.group !== group ? "" : `
+        <div class="recipe-card" onclick="openGuide(${i})">
+          <div class="recipe-name">${g.title}</div>
+          <div class="recipe-desc">${g.desc}</div>
+        </div>`).join("")}`).join("");
+    return;
+  }
+  grid.innerHTML = tabs + RECIPES.map((r, i) => {
+    const meta = recipeMeta(r, true);
+    return `
     <div class="recipe-card" onclick="openRecipe(${i})">
       <div class="recipe-tag">${r.tag}</div>
       <div class="recipe-name">${r.name}</div>
       <div class="recipe-desc">${r.desc}</div>
-      <div class="recipe-meta">
-        <span class="recipe-meta-item">⏱ ${r.time}</span>
-        <span class="recipe-meta-item">🍽 ${r.servings} ${r.servings === 1 ? "serving" : "servings"}</span>
-      </div>
-    </div>`).join("");
+      ${meta.length ? `<div class="recipe-meta">${meta.map(m => `<span class="recipe-meta-item">${m}</span>`).join("")}</div>` : ""}
+    </div>`;
+  }).join("");
+}
+
+function showKitchenDetail(html) {
+  document.getElementById("kitchen-list").style.display = "none";
+  const detail = document.getElementById("kitchen-detail");
+  detail.style.display = "block";
+  detail.innerHTML = html;
+  window.scrollTo(0,0);
+}
+
+function closeKitchenDetail() {
+  document.getElementById("kitchen-list").style.display = "block";
+  document.getElementById("kitchen-detail").style.display = "none";
 }
 
 function openRecipe(idx) {
   const r = RECIPES[idx];
-  document.getElementById("kitchen-list").style.display = "none";
-  const detail = document.getElementById("kitchen-detail");
-  detail.style.display = "block";
-  detail.innerHTML = `
+  const meta = recipeMeta(r, false);
+  const hasIngredients = r.ingredients && r.ingredients.length;
+  showKitchenDetail(`
     <div class="recipe-detail">
-      <div class="back-btn" onclick="document.getElementById('kitchen-list').style.display='block';document.getElementById('kitchen-detail').style.display='none'">← Back to Recipes</div>
+      <div class="back-btn" onclick="closeKitchenDetail()">← Back to Recipes</div>
       <div class="recipe-tag">${r.tag}</div>
       <div class="recipe-detail-name">${r.name}</div>
-      <div style="display:flex;gap:16px;margin-bottom:16px">
-        <span style="font-size:12px;color:var(--text-muted)">⏱ ${r.time}</span>
-        <span style="font-size:12px;color:var(--text-muted)">🍽 ${r.servings} servings</span>
-      </div>
+      ${meta.length ? `<div style="display:flex;gap:16px;margin-bottom:16px">${meta.map(m => `<span style="font-size:12px;color:var(--text-muted)">${m}</span>`).join("")}</div>` : ""}
       <div class="recipe-detail-desc">${r.desc}</div>
-      <div class="recipe-section-title">Ingredients</div>
-      <ul class="ingredient-list">${r.ingredients.map(i=>`<li>${i}</li>`).join("")}</ul>
+      ${hasIngredients ? `<div class="recipe-section-title">Ingredients</div>
+      <ul class="ingredient-list">${r.ingredients.map(i=>`<li>${i}</li>`).join("")}</ul>` : ""}
       ${r.equipment && r.equipment.length ? `<div class="recipe-section-title">Equipment Needed</div>
       <ul class="equipment-list">${r.equipment.map(e=>`<li>${e}</li>`).join("")}</ul>` : ""}
       <div class="recipe-section-title">Method</div>
-      <ol class="step-list">${r.steps.map((s,i)=>`<div class="step-item"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`).join("")}</ol>
-    </div>`;
+      ${hasIngredients
+        ? `<ol class="step-list">${r.steps.map((s,i)=>`<div class="step-item"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`).join("")}</ol>`
+        : r.steps.map(s => `<p class="step-text step-prose">${s}</p>`).join("")}
+    </div>`);
   checkMilestone(2);
   saveState();
-  window.scrollTo(0,0);
+}
+
+function openGuide(idx) {
+  const g = GUIDES[idx];
+  showKitchenDetail(`
+    <div class="recipe-detail">
+      <div class="back-btn" onclick="closeKitchenDetail()">← Back to Guides</div>
+      <div class="recipe-tag">${g.group}</div>
+      <div class="recipe-detail-name">${g.title}</div>
+      <div class="guide-body">${g.html}</div>
+    </div>`);
 }
 
 // ── JOURNAL ───────────────────────────────────────
